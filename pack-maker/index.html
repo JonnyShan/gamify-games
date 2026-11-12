@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Gamify Pack Maker</title>
+<style>
+:root{--bg:#111214;--panel:#1B1D21;--line:#2B2D31;--text:#F1F1F1;--muted:#9A9DA3;--accent:#1F82D0}
+:root[data-theme="light"]{--bg:#F4F5F7;--panel:#FFFFFF;--line:#DADCE0;--text:#16181B;--muted:#5C6066}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:980px;margin:0 auto;padding:24px 16px 64px}
+h1{font-size:24px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 24px}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px}
+.card h2{font-size:15px;margin:0 0 14px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+label{display:block;font-size:13px;color:var(--muted);margin:14px 0 6px}
+label:first-of-type{margin-top:0}
+input[type=text]{width:100%;padding:11px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit}
+.row{display:flex;gap:10px;align-items:center}
+input[type=color]{width:52px;height:44px;border:1px solid var(--line);border-radius:8px;background:none;padding:2px;cursor:pointer}
+.hex{width:110px!important;font-family:ui-monospace,monospace}
+input[type=file]{width:100%;color:var(--muted);font-size:13px}
+.check{display:flex;gap:8px;align-items:center;margin-top:12px;color:var(--text);font-size:14px}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+button{font:inherit;font-weight:600;padding:12px 16px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);cursor:pointer;min-height:44px}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button:disabled{opacity:.45;cursor:default}
+.stage{border-radius:10px;padding:22px;min-height:150px;display:grid;place-items:center;gap:14px;background:var(--dark,#2B2D31);transition:background .2s}
+.stage img{max-width:100%;max-height:80px}
+.stage .bar{height:6px;width:60%;border-radius:3px;background:var(--brand,#1F82D0)}
+.games{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;margin-top:14px}
+.games a{display:block;text-align:center;padding:12px 8px;border-radius:8px;border:1px solid var(--line);color:var(--text);text-decoration:none;font-weight:600;font-size:14px}
+.games a:hover{border-color:var(--accent)}
+.games.off a{pointer-events:none;opacity:.4}
+.status{font-size:13px;color:var(--muted);margin-top:10px;min-height:1.4em}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+code{font-family:ui-monospace,monospace;font-size:12px}
+</style>
+</head>
+<body>
+<main>
+  <h1>Pack Maker</h1>
+  <p class="sub">Add a name, two colours and a logo. All seven Gamify games pick up the brand straight away in this browser.</p>
+  <div class="grid">
+    <section class="card">
+      <h2>Brand</h2>
+      <label for="name">Brand name</label>
+      <input id="name" type="text" placeholder="Acme Sport" maxlength="40">
+      <label>Accent colour (buttons, trim, highlights)</label>
+      <div class="row"><input id="accent" type="color" value="#FF6B00"><input id="accentHex" class="hex" type="text" value="#FF6B00"></div>
+      <label>Kit colour (shirts, court, panels)</label>
+      <div class="row"><input id="dark" type="color" value="#0B1F3A"><input id="darkHex" class="hex" type="text" value="#0B1F3A"></div>
+      <label for="logo">Wordmark logo (SVG or PNG, wide)</label>
+      <input id="logo" type="file" accept=".svg,.png,image/svg+xml,image/png">
+      <label for="mark">Square mark (optional, SVG or PNG)</label>
+      <input id="mark" type="file" accept=".svg,.png,image/svg+xml,image/png">
+      <div class="check"><input id="white" type="checkbox" checked><label for="white" style="margin:0;color:inherit">Make logos white (best on the dark game screens)</label></div>
+      <div class="btns">
+        <button id="apply" class="primary" disabled>Apply to all games</button>
+        <button id="zip" disabled>Download pack</button>
+      </div>
+      <div class="status" id="status"></div>
+    </section>
+    <section class="card">
+      <h2>Preview</h2>
+      <div class="stage" id="stage"><span style="color:#fff;opacity:.6">Your logo shows here</span></div>
+      <div class="games off" id="games">
+        <a data-g="football" target="_blank">Football</a>
+        <a data-g="tennis" target="_blank">Tennis</a>
+        <a data-g="american-football" target="_blank">American football</a>
+        <a data-g="basketball" target="_blank">Basketball</a>
+        <a data-g="cricket" target="_blank">Cricket</a>
+        <a data-g="golf" target="_blank">Golf</a>
+        <a data-g="motorbike" target="_blank">Motorbike</a>
+      </div>
+      <p class="note">Game links work after you press Apply. The draft stays in this browser only. To make a permanent link you can send to a client, download the pack and send it to Claude to publish.</p>
+    </section>
+  </div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+(function(){
+  try{ if(localStorage.getItem('pm-theme')==='light') document.documentElement.dataset.theme='light'; }catch(e){}
+  const $=id=>document.getElementById(id);
+  const CACHE='gamify-draft-pack';
+  const state={logo:null,mark:null};
+  let swReady=Promise.resolve(null);
+  if('serviceWorker' in navigator){
+    swReady=navigator.serviceWorker.register('/sw.js',{scope:'/'}).then(()=>navigator.serviceWorker.ready).catch(e=>{setStatus('Could not start the preview helper: '+e.message);return null;});
+  }
+  function setStatus(t){ $('status').textContent=t; }
+  function normHex(v){ v=String(v).trim(); if(!v.startsWith('#')) v='#'+v; return /^#[0-9a-fA-F]{6}$/.test(v)?v.toUpperCase():null; }
+  function pair(c,h){
+    $(c).addEventListener('input',()=>{ $(h).value=$(c).value.toUpperCase(); refresh(); });
+    $(h).addEventListener('input',()=>{ const v=normHex($(h).value); if(v){ $(c).value=v; refresh(); } });
+  }
+  pair('accent','accentHex'); pair('dark','darkHex');
+  function shade(hex,amt){
+    const n=parseInt(hex.slice(1),16); let r=n>>16,g=n>>8&255,b=n&255;
+    const f=v=>Math.max(0,Math.min(255,Math.round(v+(amt>0?(255-v)*amt:v*amt))));
+    return '#'+[f(r),f(g),f(b)].map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase();
+  }
+  function slug(s){ return s.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,30)||'brand'; }
+  function readFile(f){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=()=>res(r.result); r.onerror=rej; r.readAsDataURL(f); }); }
+  function loadImg(src){ return new Promise((res,rej)=>{ const i=new Image(); i.onload=()=>res(i); i.onerror=()=>rej(new Error('That file is not a readable image')); i.src=src; }); }
+  // Returns {blob, ext, url} for a logo, whitened to PNG when asked.
+  async function prepLogo(file){
+    if(!file) return null;
+    const data=await readFile(file);
+    const isSvg=/svg/.test(file.type)||/\.svg$/i.test(file.name);
+    if(!$('white').checked){
+      return {blob:file, ext:isSvg?'svg':'png', url:data};
+    }
+    const img=await loadImg(data);
+    let w=img.naturalWidth||600, h=img.naturalHeight||200;
+    const scale=Math.min(4, 480/h, 1600/w); w=Math.round(w*scale); h=Math.round(h*scale);
+    const c=document.createElement('canvas'); c.width=w; c.height=h;
+    const x=c.getContext('2d'); x.drawImage(img,0,0,w,h);
+    x.globalCompositeOperation='source-in'; x.fillStyle='#FFFFFF'; x.fillRect(0,0,w,h);
+    const blob=await new Promise(r=>c.toBlob(r,'image/png'));
+    return {blob, ext:'png', url:c.toDataURL('image/png')};
+  }
+  async function rebuildLogos(){
+    try{
+      state.logo=await prepLogo($('logo').files[0]);
+      state.mark=await prepLogo($('mark').files[0]);
+      setStatus('');
+    }catch(e){ state.logo=null; setStatus(e.message); }
+    refresh();
+  }
+  $('logo').addEventListener('change',rebuildLogos);
+  $('mark').addEventListener('change',rebuildLogos);
+  $('white').addEventListener('change',rebuildLogos);
+  $('name').addEventListener('input',refresh);
+  function values(){
+    return { name:$('name').value.trim(), accent:normHex($('accentHex').value)||'#FF6B00', dark:normHex($('darkHex').value)||'#0B1F3A' };
+  }
+  function refresh(){
+    const v=values();
+    $('stage').style.setProperty('--dark',v.dark);
+    $('stage').style.setProperty('--brand',v.accent);
+    $('stage').innerHTML = state.logo ? '<img alt="logo" src="'+state.logo.url+'"><div class="bar"></div>' : '<span style="color:#fff;opacity:.6">Your logo shows here</span><div class="bar"></div>';
+    const ok=!!(v.name && state.logo);
+    $('apply').disabled=!ok; $('zip').disabled=!ok;
+    $('games').classList.add('off');
+  }
+  // One pack in, seven game formats out. Paths are relative to the site root, with ID in the brand folder.
+  function packFiles(id){
+    const v=values(), L='wordmark.'+state.logo.ext, M=state.mark?('mark.'+state.mark.ext):L;
+    const json=o=>new Blob([JSON.stringify(o,null,2)],{type:'application/json'});
+    const files={};
+    const add=(dir,name,obj)=>{
+      files[dir+'/'+name]=json(obj);
+      files[dir+'/'+L]=state.logo.blob;
+      if(state.mark) files[dir+'/'+M]=state.mark.blob;
+    };
+    add('football/brand/'+id,'brand.json',{id,name:v.name,colors:{accent:v.accent},logo:Object.assign({static:L},state.mark?{mark:M}:{}),
+      teams:{home:{hudColor:v.accent,kit:{shirt:v.dark,shorts:v.dark,socks:v.dark,boots:v.dark,numberColor:v.accent}}}});
+    add('tennis/brand/'+id,'brand.json',{id,name:v.name,colors:{primary:v.dark,accent:v.accent},logo:{static:L,mark:M},
+      court:{surface:'hard',hard:{inside:v.dark,outside:shade(v.dark,0.14)}}});
+    add('american-football/brand/'+id,'brand.json',{id,name:v.name,colors:{primary:v.dark,accent:v.accent},logo:{static:L,mark:M},
+      uniforms:{home:{jersey:v.dark,helmet:v.dark,pants:'#F2F2F2'}}});
+    add('golf/brand/'+id,'brand.json',{id,name:v.name,logo:L,colors:{primary:v.accent,dark:v.dark}});
+    add('cricket/brands/'+id,'theme.json',{name:v.name,colors:{accent:v.accent,kit:v.dark},logos:{wordmark:L}});
+    add('basketball/brands/'+id,'brand.json',{name:v.name,accent:v.accent,logo:L});
+    add('motorbike/brands/'+id,'brand.json',{name:v.name,accent:v.accent,logo:L});
+    return files;
+  }
+  const TYPES={json:'application/json',svg:'image/svg+xml',png:'image/png'};
+  $('apply').addEventListener('click',async()=>{
+    const reg=await swReady;
+    if(!reg||!('caches' in window)){ setStatus('This browser cannot preview packs. Try Chrome or Safari, or download the pack.'); return; }
+    const c=await caches.open(CACHE);
+    for(const k of await c.keys()) await c.delete(k);
+    const files=packFiles('draft');
+    for(const [p,blob] of Object.entries(files)){
+      const ext=p.split('.').pop();
+      await c.put(location.origin+'/'+p,new Response(blob,{headers:{'Content-Type':TYPES[ext]||'application/octet-stream','Cache-Control':'no-store'}}));
+    }
+    // Basketball and cricket read their pack with a synchronous request, which skips the helper, so they read it from here.
+    for(const [p,blob] of Object.entries(files)){
+      const m=p.match(/^(basketball|cricket)\/brands\/draft\/(brand|theme)\.json$/);
+      if(m){ try{ localStorage.setItem('gamify-draft:'+m[1], await blob.text()); }catch(e){} }
+    }
+    document.querySelectorAll('#games a').forEach(a=>{ a.href='/'+a.dataset.g+'/?brand=draft'; });
+    $('games').classList.remove('off');
+    setStatus('Applied. Open any game below.');
+  });
+  $('zip').addEventListener('click',async()=>{
+    if(!window.JSZip){ setStatus('Download helper did not load. Check the connection and reload.'); return; }
+    const id=slug(values().name), z=new JSZip();
+    for(const [p,blob] of Object.entries(packFiles(id))) z.file(p,blob);
+    z.file('pack-source.json',JSON.stringify(Object.assign({id},values()),null,2));
+    const blob=await z.generateAsync({type:'blob'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=id+'-brand-pack.zip'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),5000);
+    setStatus('Downloaded '+id+'-brand-pack.zip');
+  });
+  refresh();
+})();
+</script>
+</body>
+</html>

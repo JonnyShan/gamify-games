@@ -46,6 +46,7 @@
   function lum(h) { var c = hexToRgb(h); return (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255; }
 
   function pack(id) {
+    if (id === 'draft') { try { var d = localStorage.getItem('gamify-draft:cricket'); if (d) return JSON.parse(d); } catch (e) {} }
     try {
       var x = new XMLHttpRequest();
       x.open("GET", "brands/" + id + "/theme.json", false);   // sync: the game module reads THEME as it starts
