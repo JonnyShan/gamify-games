@@ -1,0 +1,202 @@
+{
+  "id": "gamify",
+  "name": "Gamify",
+  "tagline": "Play it. Own it.",
+  "title": {
+    "lines": [
+      {
+        "text": "Gamify",
+        "accent": false
+      },
+      {
+        "text": "Football",
+        "accent": true
+      }
+    ],
+    "strapline": "DRAW THE SHOT. OWN THE MOMENT.",
+    "hero": "title-hero.webp"
+  },
+  "colors": {
+    "primary": "#000000",
+    "accent": "#1F82D0",
+    "text": "#FFFFFF",
+    "textMuted": "#8A8A8A",
+    "panel": "#000000",
+    "panelOpacity": 0.65
+  },
+  "logo": {
+    "static": "gamify-wordmark.svg",
+    "animatedSvg": "gamify-logo.svg",
+    "animatedFrames": "gamify-logo.svg",
+    "animatedFps": 30,
+    "mark": "gamify-mark.svg",
+    "bolt": "gamify-mark.svg",
+    "boltMulticolour": true
+  },
+  "teams": {
+    "home": {
+      "name": "GAMIFY",
+      "short": "GAM",
+      "hudColor": "#1F82D0",
+      "kit": {
+        "shirt": "#2B2D31",
+        "panels": "#1F82D0",
+        "trim": "#1F82D0",
+        "shorts": "#2B2D31",
+        "shortsTrim": "#1F82D0",
+        "socks": "#2B2D31",
+        "sockBand": "#1F82D0",
+        "boots": "#2B2D31",
+        "studs": "#1F82D0",
+        "numberColor": "#1F82D0",
+        "logoColor": "#1F82D0",
+        "logos": [
+          "chest",
+          "back"
+        ]
+      },
+      "keeper": {
+        "shirt": "#1F82D0",
+        "panels": "#000000",
+        "trim": "#000000",
+        "shorts": "#000000",
+        "shortsTrim": "#1F82D0",
+        "socks": "#000000",
+        "sockBand": "#1F82D0",
+        "boots": "#000000",
+        "studs": "#000000",
+        "gloves": "#000000",
+        "numberColor": "#000000",
+        "logoColor": "#000000",
+        "logos": [
+          "chest",
+          "back"
+        ]
+      }
+    },
+    "away": {
+      "name": "COBALT",
+      "short": "COB",
+      "hudColor": "#F1F1F1",
+      "kit": {
+        "shirt": "#1F4FD8",
+        "panels": "#FFFFFF",
+        "trim": "#FFFFFF",
+        "shorts": "#1F4FD8",
+        "shortsTrim": "#FFFFFF",
+        "socks": "#1F4FD8",
+        "sockBand": "#FFFFFF",
+        "boots": "#F1F1F1",
+        "studs": "#F1F1F1",
+        "numberColor": "#FFFFFF",
+        "logoColor": null,
+        "logos": []
+      },
+      "keeper": {
+        "shirt": "#7A1424",
+        "panels": "#111111",
+        "trim": "#111111",
+        "shorts": "#7A1424",
+        "shortsTrim": "#7A1424",
+        "socks": "#7A1424",
+        "sockBand": "#111111",
+        "boots": "#111111",
+        "studs": "#111111",
+        "gloves": "#111111",
+        "numberColor": "#D9D9D9",
+        "logoColor": null,
+        "logos": []
+      }
+    }
+  },
+  "ball": {
+    "base": "#F4F4F4",
+    "panels": "#111111",
+    "accentPanels": "#1F82D0"
+  },
+  "pitch": {
+    "grassA": "#1f4f1c",
+    "grassB": "#2b6526",
+    "lines": "#FFFFFF",
+    "centreLogo": false
+  },
+  "stadium": {
+    "timeOfDay": "night",
+    "ledBoards": {
+      "content": [
+        "wordmark",
+        "bolt"
+      ],
+      "background": "#111214",
+      "color": "#1F82D0",
+      "scrollSpeed": 0.6
+    },
+    "goalNetLogo": "bolt",
+    "crowdBrandShare": 0.4,
+    "flags": "#1F82D0"
+  },
+  "fx": {
+    "swipeLine": "#1F82D0",
+    "ballTrail": "#1F82D0",
+    "powerShotGlow": "#1F82D0",
+    "ringYou": "#1F82D0",
+    "ringTarget": "#FFFFFF"
+  },
+  "callouts": {
+    "goal": "GOAL!",
+    "save": "SAVED!",
+    "perfectCurve": "PERFECT CURVE",
+    "powerShot": "POWER SHOT",
+    "topBin": "TOP BIN",
+    "saved": "SAVED!",
+    "shoot": "SHOOT",
+    "pass": "PASS",
+    "sprint": "SPRINT",
+    "tackle": "TACKLE",
+    "switch": "SWITCH",
+    "slide": "SLIDE",
+    "kickoff": "KICK OFF",
+    "half": "HALF TIME",
+    "full": "FULL TIME",
+    "playAgain": "PLAY AGAIN",
+    "tapToPlay": "TAP TO PLAY",
+    "blocked": "BLOCKED",
+    "won": "WON IT",
+    "swipe": "SWIPE TO SHOOT",
+    "win": "YOU WIN",
+    "lose": "YOU LOSE",
+    "draw": "DRAW",
+    "replay": "REPLAY",
+    "superSlowMo": "SUPER SLO-MO",
+    "tapToSkip": "TAP TO SKIP",
+    "powerReady": "POWER SHOT READY",
+    "penalties": "PENALTIES",
+    "yourKick": "YOUR KICK",
+    "inGoal": "YOU'RE IN GOAL",
+    "swipeDive": "SWIPE TO DIVE",
+    "missed": "MISSED",
+    "suddenDeath": "SUDDEN DEATH",
+    "winPens": "WON ON PENS",
+    "losePens": "LOST ON PENS",
+    "onPens": "ON PENALTIES",
+    "shareGoal": "SHARE GOAL",
+    "shared": "CLIP SAVED",
+    "topScores": "TOP SCORES",
+    "newBest": "NEW BEST",
+    "points": "PTS",
+    "menu": "MENU",
+    "yourBest": "YOUR BEST",
+    "howToPlay": "HOW TO PLAY",
+    "skip": "SKIP",
+    "tutSprint": "HOLD SPRINT TO RUN",
+    "tutPass": "TAP PASS, THEN RUN ON",
+    "tutShoot": "NEAR GOAL, TAP SHOOT",
+    "tutSwipe": "SWIPE ACROSS TO SHOOT",
+    "tutAway": "AIM AWAY FROM THE KEEPER"
+  },
+  "cta": null,
+  "fonts": {
+    "display": "BarlowCondensed-Bold.woff2",
+    "body": "Inter-Regular.woff2"
+  }
+}
