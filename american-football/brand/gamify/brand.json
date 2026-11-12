@@ -21,6 +21,12 @@
       "frames": 72,
       "cols": 8,
       "fps": 12
+    },
+    {
+      "sheet": "touchdown-backflip.webp",
+      "frames": 72,
+      "cols": 8,
+      "fps": 12
     }
   ],
   "title": {
