@@ -162,7 +162,7 @@
     background:linear-gradient(180deg, rgba(14,14,14,0) 0%, rgba(14,14,14,.15) 35%, rgba(14,14,14,.88) 66%, rgba(14,14,14,.97) 100%); }
   .screen .inner { width:100%; max-width:440px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
   .brand { height:30px; aspect-ratio:573 / 155; background:var(--gold);
-    -webkit-mask:url(assets/brand/lockup.png) left center / contain no-repeat; mask:url(assets/brand/lockup.png) left center / contain no-repeat; }
+    -webkit-mask:var(--lockup) left center / contain no-repeat; mask:var(--lockup) left center / contain no-repeat; }
   .eyebrow { font:800 14px var(--display); letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
   .screen h1 { font:italic 800 clamp(44px, 13.5vw, 72px)/.86 var(--display); font-size:clamp(40px, 12cqw, 72px); letter-spacing:-.01em; text-transform:uppercase; text-wrap:balance; }
   .screen h1 em { font-style:inherit; color:var(--gold); }
@@ -258,9 +258,9 @@
 <div id="readout"></div>
 
 <div id="title" class="screen intro">
-  <img class="intro-art" id="introArt" src="assets/intro/title.webp" alt="" decoding="async" fetchpriority="high">
+  <img class="intro-art" id="introArt" alt="" decoding="async" fetchpriority="high">
   <div class="inner">
-    <h1 class="logo"><span class="l1">Gamify</span><span class="l2">Crick<em>et</em></span></h1>
+    <h1 class="logo"><span class="l1" id="titleLine1">Gamify</span><span class="l2">Crick<em>et</em></span></h1>
     <div class="tag"><i></i>Super Over Showdown</div>
     <button type="button" class="start" id="playBtn" disabled>Loading</button>
     <div class="best" id="bestLine"></div>
@@ -310,8 +310,11 @@
   // Watchdog: if the module below fails to start (offline CDN, no WebGL), show the error screen.
   window.__ok = false;
   setTimeout(function () { if (!window.__ok) document.getElementById("err").hidden = false; }, 9000);
-  // the intro art fades in once it has decoded
+  // the brand's title line and intro art (theme.js); the art fades in once it has decoded
+  document.getElementById("titleLine1").textContent = window.THEME.titleLine1;
   (function (art) { function ready() { art.classList.add("ready"); }
+    if (!window.THEME.art.intro) { art.remove(); return; }
+    art.src = window.THEME.art.intro;
     if (art.complete && art.naturalWidth) ready(); else art.addEventListener("load", ready); })(document.getElementById("introArt"));
 </script>
 
@@ -2218,7 +2221,30 @@ function loadHeroes() {
   // inside a .glb are decoded through a blob: fetch, which the Claude artifact viewer's security policy blocks, and
   // the players then render untextured white.)
   const texLoader = new THREE.TextureLoader();
+  // The kit textures are made in one accent (T.kitSourceAccent, lime); a brand with another accent gets those
+  // pixels repainted in its own, keeping their light and shade. White, black and skin are left as they are.
+  const rebrandKit = (img) => {
+    if (!T.kitSourceAccent || T.kitSourceAccent.toLowerCase() === T.colors.accent.toLowerCase()) return null;
+    const c = document.createElement("canvas"); c.width = img.width; c.height = img.height;
+    const g = c.getContext("2d", { willReadFrequently: true }); g.drawImage(img, 0, 0);
+    const d = g.getImageData(0, 0, c.width, c.height), p = d.data;
+    const A = [1, 3, 5].map((i) => parseInt(T.colors.accent.substr(i, 2), 16));
+    for (let i = 0; i < p.length; i += 4) {
+      const r = p[i] / 255, gg = p[i + 1] / 255, b = p[i + 2] / 255, mx = Math.max(r, gg, b), mn = Math.min(r, gg, b), dl = mx - mn;
+      if (dl < 0.12 || mx < 0.15) continue;
+      const s = dl / mx; let h = mx === r ? (60 * ((gg - b) / dl) + 360) % 360 : mx === gg ? 60 * ((b - r) / dl) + 120 : 60 * ((r - gg) / dl) + 240;
+      if (h < 44 || h > 103) continue;
+      const w = Math.min(1, (s - 0.25) / 0.25) * Math.min(1, (mx - 0.15) / 0.15);
+      if (w <= 0) continue;
+      const shade = Math.min(1.2, mx / 0.95);
+      for (let k = 0; k < 3; k++) p[i + k] = p[i + k] * (1 - w) + Math.min(255, A[k] * shade) * w;
+    }
+    g.putImageData(d, 0, 0);
+    return c;
+  };
   const kitTexture = (url) => new Promise((res) => texLoader.load(url, (t) => {
+    const re = t.image ? rebrandKit(t.image) : null;
+    if (re) { t.dispose(); t = new THREE.CanvasTexture(re); }
     t.flipY = false; t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping;
     t.anisotropy = Math.min(4, renderer.capabilities.getMaxAnisotropy()); res(t);
   }, undefined, () => { console.warn("3D player: texture missing", url); res(null); }));
@@ -2241,7 +2267,7 @@ const ball = new THREE.Mesh(new THREE.SphereGeometry(BALL_VIS, 18, 14), new THRE
 ball.castShadow = true; scene.add(ball);
 const TRAIL_N = 22;
 const trail = new THREE.InstancedMesh(new THREE.SphereGeometry(BALL_VIS * 0.9, 8, 6),
-  new THREE.MeshBasicMaterial({ color: 0xeaff99, transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }), TRAIL_N);
+  new THREE.MeshBasicMaterial({ color: hex(T.colors.accentLight), transparent: true, opacity: 0.32, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }), TRAIL_N);
 trail.frustumCulled = false; scene.add(trail);
 const trailPts = Array.from({ length: TRAIL_N }, () => new V3(0, -10, 0));
 let trailOn = false;
