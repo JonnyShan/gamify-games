@@ -32,5 +32,9 @@
     "boardText": "#FFFFFF",
     "tracer": "#1F82D0",
     "ball": "#FFFFFF"
+  },
+  "leaderboard": {
+    "url": "https://gamify-leaderboard.jonny-13a.workers.dev",
+    "game": "gamify_golf"
   }
 }
