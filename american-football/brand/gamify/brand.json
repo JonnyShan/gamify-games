@@ -1,0 +1,90 @@
+{
+  "id": "gamify",
+  "name": "Gamify",
+  "teamName": "Gamify",
+  "tagline": "Play it. Own it.",
+  "celebrations": [
+    {
+      "sheet": "touchdown-dance.webp",
+      "frames": 48,
+      "cols": 8,
+      "fps": 12
+    },
+    {
+      "sheet": "touchdown-hands-up.webp",
+      "frames": 72,
+      "cols": 8,
+      "fps": 12
+    },
+    {
+      "sheet": "touchdown-crowd-wave.webp",
+      "frames": 72,
+      "cols": 8,
+      "fps": 12
+    }
+  ],
+  "title": {
+    "lines": [
+      {
+        "text": "American"
+      },
+      {
+        "text": "Football",
+        "accent": true
+      }
+    ],
+    "hero": "title-hero.webp"
+  },
+  "colors": {
+    "primary": "#000000",
+    "accent": "#1F82D0",
+    "text": "#FFFFFF",
+    "textMuted": "#8A8A8A",
+    "fieldLine": "#FFFFFF",
+    "firstDown": "#1F82D0",
+    "scrimmage": "#000000"
+  },
+  "logo": {
+    "static": "gamify-wordmark.svg",
+    "animatedSvg": "gamify-wordmark.svg",
+    "animatedFrames": "gamify-wordmark.svg",
+    "animatedFps": 30,
+    "mark": "gamify-mark.svg"
+  },
+  "textures": {
+    "endZone": "endzone.png",
+    "midfield": "midfield.png",
+    "sidelineBoards": [
+      "board-1.png",
+      "board-2.png",
+      "board-3.png",
+      "board-4.png"
+    ],
+    "goalpostPad": "goalpost-pad.png",
+    "flag": "flag.png",
+    "crowdPattern": "crowd.png",
+    "stadiumScreen": "screen-loop.png"
+  },
+  "uniforms": {
+    "home": {
+      "jersey": "#2B2D31",
+      "numbers": "#1F82D0",
+      "helmet": "#2B2D31",
+      "facemask": "#000000",
+      "pants": "#2B2D31",
+      "stripe": "#1F82D0"
+    },
+    "away": {
+      "jersey": "#F1F1F1",
+      "numbers": "#000000",
+      "helmet": "#000000",
+      "facemask": "#F1F1F1",
+      "pants": "#F1F1F1",
+      "stripe": "#000000"
+    }
+  },
+  "fonts": {
+    "display": "BarlowCondensed-Bold.woff2",
+    "body": "Inter-Regular.woff2"
+  }
+}
