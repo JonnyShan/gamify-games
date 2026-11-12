@@ -1,0 +1,19 @@
+{
+  "id": "volt",
+  "name": "Volt",
+  "colors": {
+    "primary": "#0B1F3A",
+    "accent": "#FF6B00"
+  },
+  "logo": {
+    "static": "volt-wordmark.svg",
+    "mark": "volt-mark.svg"
+  },
+  "court": {
+    "surface": "hard",
+    "hard": {
+      "inside": "#0B1F3A",
+      "outside": "#13315C"
+    }
+  }
+}
