@@ -1,0 +1,7 @@
+{
+  "id": "volt",
+  "name": "Volt",
+  "colors": { "accent": "#E8452C" },
+  "logo": { "static": "volt-wordmark.svg" },
+  "teams": { "home": { "kit": { "shirt": "#F2F2F2", "shorts": "#F2F2F2", "socks": "#F2F2F2", "numberColor": "#E8452C" } } }
+}
