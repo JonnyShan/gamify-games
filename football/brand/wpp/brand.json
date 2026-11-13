@@ -1,0 +1,22 @@
+{
+  "id": "wpp",
+  "name": "WPP",
+  "colors": {
+    "accent": "#0091FF"
+  },
+  "logo": {
+    "static": "wpp-wordmark.svg"
+  },
+  "teams": {
+    "home": {
+      "hudColor": "#0091FF",
+      "kit": {
+        "shirt": "#000050",
+        "shorts": "#000050",
+        "socks": "#000050",
+        "boots": "#000050",
+        "numberColor": "#0091FF"
+      }
+    }
+  }
+}
