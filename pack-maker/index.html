@@ -44,7 +44,7 @@ code{font-family:ui-monospace,monospace;font-size:12px}
 <body>
 <main>
   <h1>Pack Maker</h1>
-  <p class="sub">Add a name, two colours and a logo. All seven Gamify games pick up the brand straight away in this browser.</p>
+  <p class="sub">Add a name, two colours and a logo. All eight Gamify games pick up the brand straight away in this browser.</p>
   <div class="grid">
     <section class="card">
       <h2>Brand</h2>
@@ -76,6 +76,7 @@ code{font-family:ui-monospace,monospace;font-size:12px}
         <a data-g="cricket" target="_blank">Cricket</a>
         <a data-g="golf" target="_blank">Golf</a>
         <a data-g="motorbike" target="_blank">Motorbike</a>
+        <a data-g="racing" target="_blank">F1 racing</a>
       </div>
       <p class="note">Game links work after you press Apply. The draft stays in this browser only. To make a permanent link you can send to a client, download the pack and send it to Claude to publish.</p>
     </section>
@@ -168,6 +169,7 @@ code{font-family:ui-monospace,monospace;font-size:12px}
     add('cricket/brands/'+id,'theme.json',{name:v.name,colors:{accent:v.accent,kit:v.dark},logos:{wordmark:L}});
     add('basketball/brands/'+id,'brand.json',{name:v.name,accent:v.accent,logo:L});
     add('motorbike/brands/'+id,'brand.json',{name:v.name,accent:v.accent,logo:L});
+    add('racing/brands/'+id,'brand.json',{name:v.name,accent:v.accent,dark:v.dark,logo:L});
     return files;
   }
   const TYPES={json:'application/json',svg:'image/svg+xml',png:'image/png'};
