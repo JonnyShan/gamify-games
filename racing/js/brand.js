@@ -71,7 +71,7 @@ const CORE = {
 
   // Lap sharing: the link on the lap card and the kiosk QR code, and the message that goes with a shared card.
   share: { url: 'https://demos.gamify.com/racing/', text: 'I just lapped Gamify Raceway in {time}. Beat that: https://demos.gamify.com/racing/' },
-  // Worldwide leaderboard: the Gamify demos' own Worker (tools/leaderboard-worker-gamify), separate from Livewire's.
+  // Worldwide leaderboard: the Gamify demos' own Worker (tools/leaderboard-worker-gamify).
   leaderboard: { url: 'https://gamify-leaderboard.jonny-13a.workers.dev' },
 
   // The car is built in code, so there is no turning model on the loading screen.
