@@ -1,0 +1,10 @@
+{
+  "name": "WPP",
+  "colors": {
+    "accent": "#0091FF",
+    "kit": "#000050"
+  },
+  "logos": {
+    "wordmark": "wpp-wordmark.svg"
+  }
+}

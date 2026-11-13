@@ -1,0 +1,19 @@
+{
+  "id": "wpp",
+  "name": "WPP",
+  "colors": {
+    "primary": "#000050",
+    "accent": "#0091FF"
+  },
+  "logo": {
+    "static": "wpp-wordmark.svg",
+    "mark": "wpp-wordmark.svg"
+  },
+  "court": {
+    "surface": "hard",
+    "hard": {
+      "inside": "#000050",
+      "outside": "#242468"
+    }
+  }
+}

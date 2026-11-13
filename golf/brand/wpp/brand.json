@@ -1,0 +1,9 @@
+{
+  "id": "wpp",
+  "name": "WPP",
+  "logo": "wpp-wordmark.svg",
+  "colors": {
+    "primary": "#0091FF",
+    "dark": "#000050"
+  }
+}
