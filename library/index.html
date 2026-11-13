@@ -36,21 +36,25 @@ nav.tabs button small{opacity:.65;margin-left:6px;font-weight:500}
 section.genre{padding:10px 0 34px}
 section.genre h2{font-size:clamp(34px,5vw,52px);margin-bottom:6px}
 section.genre .lede{color:var(--muted);margin:0 0 18px;max-width:720px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-@media (max-width:520px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
-.card{position:relative;display:block;width:100%;padding:0;text-align:left;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);color:var(--text);cursor:pointer;font:inherit}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 14px;padding:0 10px}
+@media (max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 8px}}
+section.genre h2 span{color:var(--accent)}
+.card{position:relative;display:block;width:100%;padding:0;text-align:left;border:1px solid rgba(31,130,208,.45);background:#000;color:var(--text);cursor:pointer;font:inherit;text-decoration:none;transform:skewX(-4deg);overflow:hidden;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--accent);transform:skewX(-4deg) translateY(-3px)}
 .card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.card .media{position:relative;aspect-ratio:3/4;background:#000;overflow:hidden}
-.card .media img,.card .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.card .media video{opacity:0;transition:opacity .25s}
-.card.playing .media video{opacity:1}
-.card .badge{position:absolute;top:10px;left:10px;font:700 11px Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:5px 9px;border-radius:6px;background:rgba(0,0,0,.72);color:#fff;backdrop-filter:blur(4px)}
-.card .badge.ready{background:var(--accent)}
-.card .body{padding:12px 14px 14px}
-.card h3{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:800;font-size:24px;line-height:1;text-transform:uppercase;margin:0}
-.card .tag{color:var(--muted);font-size:14px;margin-top:4px}
-.card .kind{font-size:12px;color:var(--muted);margin-top:8px;letter-spacing:.04em;text-transform:uppercase}
-@media (max-width:520px){.card h3{font-size:19px}.card .tag{font-size:13px}.card .body{padding:10px}}
+.card .media{position:relative;aspect-ratio:3/4;overflow:hidden}
+.card .pic{position:absolute;inset:0 -8%;transform:skewX(4deg)}
+.card .pic img,.card .pic video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .pic video{opacity:0;transition:opacity .25s}
+.card.playing .pic video{opacity:1}
+.card .badge{position:absolute;top:12px;left:16px;transform:skewX(4deg);display:flex;align-items:center;gap:8px;font:600 10px Barlow,sans-serif;letter-spacing:.2em;text-transform:uppercase;padding:7px 11px;background:rgba(0,0,0,.82);color:#fff}
+.card .badge i{width:6px;height:6px;border-radius:50%;background:#8A8A8A}
+.card .badge.ready i{background:var(--accent)}
+.card .bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 18px;background:#000;transform:skewX(4deg)}
+.card h3{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:800;font-size:21px;line-height:1.05;text-transform:uppercase;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.card .bar b{color:var(--accent);font-size:20px;flex:0 0 auto}
+@media (max-width:640px){.card h3{font-size:16px}.card .bar{padding:9px 12px}.card .badge{font-size:9px;letter-spacing:.14em;left:12px}}
 .band{margin:10px 0 40px;border-radius:18px;padding:28px;background:linear-gradient(120deg,#0E3A63,#1F82D0);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
 .band h2{font-size:clamp(32px,4.5vw,48px)}
 .band p{margin:8px 0 0;max-width:620px;color:#DCEBFA}
@@ -105,23 +109,22 @@ dialog::backdrop{background:rgba(0,0,0,.82)}
 <script>
 // One list drives the page. "ready" games are Gamify's own and play in any brand.
 const GENRES = [
-  {id:'sports', name:'Sports and racing', lede:'Our own sports and racing games, built by us and ready to play today. Each one takes a new brand in minutes: logo, colours and kits.'},
+  {id:'sports', name:'Sports and racing', head:'The games: <span>click to play</span>', lede:'Our own sports and racing games, ready to play today. Each one takes a new brand in minutes: logo, colours and kits.'},
   {id:'arcade', name:'Arcade and action', lede:'Shooters, runners, collectors and arcade classics with a brand twist.'},
   {id:'puzzle', name:'Puzzle and others', lede:'Story games for launches and shows, then fast, familiar puzzles for the 30 second window. Every tile, card and piece can carry a product.'}
 ];
 const P='media/', DEMO='../';
-const sport=(id,title,tag,kind,path)=>({id,genre:'sports',title,tag,kind,ready:true,cover:P+'cover-'+id+'.webp',shots:[P+(['football','tennis','golf','motorbike'].includes(id)?'shot-':'cover-')+id+'.webp',P+'cover-'+id+'-volt.webp'],play:DEMO+path+'/',volt:DEMO+path+'/?brand=volt',
-  text:tag+' Built by Gamify, mobile first and portrait, with a worldwide leaderboard. Shown here in Gamify colours and in Volt, a sample brand.'});
+const sport=(id,title,path)=>({id,genre:'sports',title,ready:true,cover:P+'sport-'+id+'.webp',play:DEMO+path+'/'});
 const GAMES = [
-  sport('football','Football','Draw the shot. Own the moment.','5-a-side football','football'),
-  sport('tennis','Tennis','Swipe, hit, win the point.','Tennis','tennis'),
-  sport('american-football','American football','Call the play. Throw the strike.','American football','american-football'),
-  sport('basketball','Basketball','3 on 3 under the lights.','Basketball','basketball'),
-  sport('cricket','Cricket','Super over showdown.','Cricket','cricket'),
-  sport('golf','Hole in one','Closest to the pin wins.','Golf','golf'),
-  sport('motorbike','Hot lap','One lap. Beat the clock.','Motorbike racing','motorbike'),
-  {id:'f1',genre:'sports',title:'Grand Prix',tag:'One flying lap. Beat the clock.',kind:'Formula racing',soon:true,cover:P+'cover-f1.webp',text:'A Formula car time attack on the Gamify core, with the brand on the car, the track and the podium. Coming soon.'},
-  {id:'jaecoo',genre:'sports',title:'Kick for 7',tag:'Kick. Score. Win big.',kind:'Made for Jaecoo',client:'Jaecoo',cover:P+'jaecoo-kick-7.webp',clip:P+'jaecoo-hover.mp4',text:'A rugby goal kicking game for a Jaecoo sponsorship activation.'},
+  sport('football','Football','football'),
+  sport('cricket','Cricket','cricket'),
+  {id:'f1',genre:'sports',title:'Racing',soon:true,cover:P+'sport-f1.webp'},
+  sport('basketball','Basketball','basketball'),
+  sport('motorbike','Motorbike racing','motorbike'),
+  sport('american-football','American football','american-football'),
+  sport('tennis','Tennis','tennis'),
+  sport('golf','Golf','golf'),
+  {id:'jaecoo',genre:'arcade',title:'Kick for 7',tag:'Kick. Score. Win big.',kind:'Made for Jaecoo',client:'Jaecoo',cover:P+'jaecoo-kick-7.webp',clip:P+'jaecoo-hover.mp4',text:'A rugby goal kicking game for a Jaecoo sponsorship activation.'},
   {id:'starfighter',genre:'arcade',title:'Starfighter',tag:'Trench run arcade.',kind:'Made for LEGO Star Wars',client:'LEGO Star Wars',cover:P+'lego-starfighter.webp',clip:P+'lego-hover.mp4',text:'An arcade space shooter for a LEGO Star Wars fandom activation.'},
   {id:'uber',genre:'arcade',title:'Backseat Arcade',tag:'Vivid Sydney edition.',kind:'Made for Uber',client:'Uber',cover:P+'backseat-arcade.webp',clip:P+'uber-hover.mp4',text:'Arcade games for Uber riders, played in the back seat during Vivid Sydney.'},
   {id:'jumanji',genre:'arcade',title:'Jumanji Runner',tag:'Scoop. Dodge. Survive.',kind:'Made for Baskin-Robbins',client:'Baskin-Robbins',cover:P+'baskin-jumanji.webp',clip:P+'jumanji-hover.mp4',text:'A kids and family runner for Baskin-Robbins.'},
@@ -140,15 +143,18 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 $('#stats').innerHTML=[[GAMES.length,'games'],[GAMES.filter(g=>g.ready).length,'ready to reskin'],[GAMES.filter(g=>g.client).length,'brands shipped'],[GENRES.length,'genres']].map(([n,l])=>`<div><b>${n}</b>${l}</div>`).join('');
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function card(g){
-  const badge=g.ready?'<span class="badge ready">Play now</span>':g.soon?'<span class="badge ready">Coming soon</span>':`<span class="badge">${esc(g.client)}</span>`;
+  const chip=g.ready?'Play now':g.soon?'Coming soon':'Made for '+g.client;
   const vid=g.clip?`<video muted loop playsinline preload="none" data-src="${g.clip}"></video>`:'';
-  return `<button class="card" data-id="${g.id}"><div class="media"><img loading="lazy" src="${g.cover}" alt="">${vid}${badge}</div><div class="body"><h3>${esc(g.title)}</h3><div class="tag">${esc(g.tag)}</div><div class="kind">${esc(g.kind)}</div></div></button>`;
+  const inner=`<div class="media"><div class="pic"><img loading="lazy" src="${g.cover}" alt="">${vid}</div><span class="badge${g.ready||g.soon?' ready':''}"><i></i>${esc(chip)}</span></div><div class="bar"><h3>${esc(g.title)}</h3><b aria-hidden="true">&rarr;</b></div>`;
+  return g.genre==='sports'&&g.play
+    ? `<a class="card" href="${g.play}" target="_blank" rel="noopener" data-id="${g.id}">${inner}</a>`
+    : `<button class="card" data-id="${g.id}">${inner}</button>`;
 }
 function render(filter){
   $('#main').innerHTML=GENRES.filter(x=>filter==='all'||x.id===filter).map((x,i)=>{
     const list=GAMES.filter(g=>g.genre===x.id);
     const band=(x.id==='sports')?`<div class="band"><div><h2 class="display">See them in your brand</h2><p>Add a logo and two colours and every sports game switches to your brand, live, in about a minute.</p></div><a href="../pack-maker/">Open the pack maker</a></div>`:'';
-    return `<section class="genre" id="g-${x.id}"><h2 class="display">${esc(x.name)}</h2><p class="lede">${esc(x.lede)}</p><div class="grid">${list.map(card).join('')}</div></section>${band}`;
+    return `<section class="genre" id="g-${x.id}"><h2 class="display">${x.head||esc(x.name)}</h2><p class="lede">${esc(x.lede)}</p><div class="grid">${list.map(card).join('')}</div></section>${band}`;
   }).join('');
   wire();
 }
@@ -157,7 +163,7 @@ function stopClip(c){const v=c.querySelector('video');if(!v)return;v.pause();c.c
 function wire(){
   const hover=matchMedia('(hover: hover)').matches;
   document.querySelectorAll('.card').forEach(c=>{
-    c.addEventListener('click',()=>open(c.dataset.id));
+    if(c.tagName==='BUTTON') c.addEventListener('click',()=>open(c.dataset.id));
     if(hover){c.addEventListener('mouseenter',()=>startClip(c));c.addEventListener('mouseleave',()=>stopClip(c));}
   });
   if(!hover && 'IntersectionObserver' in window){
