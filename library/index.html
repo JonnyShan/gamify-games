@@ -105,11 +105,9 @@ dialog::backdrop{background:rgba(0,0,0,.82)}
 <script>
 // One list drives the page. "ready" games are Gamify's own and play in any brand.
 const GENRES = [
-  {id:'sports', name:'Sports', lede:'Our own sports games, built by us and ready to play today. Each one takes a new brand in minutes: logo, colours and kits.'},
-  {id:'racing', name:'Racing', lede:'Time attack and full race experiences, with the brand on the cars, the track and the podium.'},
-  {id:'arcade', name:'Arcade and action', lede:'Shooters, runners and arcade classics with a brand twist.'},
-  {id:'puzzle', name:'Puzzle', lede:'Fast, familiar puzzles for the 30 second window. Every tile, card and piece can carry a product.'},
-  {id:'story', name:'Story', lede:'Choice-driven games for launches, shows and campaigns.'}
+  {id:'sports', name:'Sports and racing', lede:'Our own sports and racing games, built by us and ready to play today. Each one takes a new brand in minutes: logo, colours and kits.'},
+  {id:'arcade', name:'Arcade and action', lede:'Shooters, runners, collectors and arcade classics with a brand twist.'},
+  {id:'puzzle', name:'Puzzle and others', lede:'Fast, familiar puzzles for the 30 second window, plus story games. Every tile, card and piece can carry a product.'}
 ];
 const P='media/', DEMO='../';
 const sport=(id,title,tag,kind,path)=>({id,genre:'sports',title,tag,kind,ready:true,cover:P+'cover-'+id+'.webp',shots:[P+'cover-'+id+'.webp',P+'cover-'+id+'-volt.webp'],play:DEMO+path+'/',volt:DEMO+path+'/?brand=volt',
@@ -121,28 +119,28 @@ const GAMES = [
   sport('basketball','Basketball','3 on 3 under the lights.','Basketball','basketball'),
   sport('cricket','Cricket','Super over showdown.','Cricket','cricket'),
   sport('golf','Hole in one','Closest to the pin wins.','Golf','golf'),
+  sport('motorbike','Hot lap','One lap. Beat the clock.','Motorbike racing','motorbike'),
+  {id:'f1',genre:'sports',title:'Grand Prix',tag:'One flying lap. Beat the clock.',kind:'Formula racing',soon:true,cover:P+'cover-f1.webp',text:'A Formula car time attack on the Gamify core, with the brand on the car, the track and the podium. Coming soon.'},
   {id:'jaecoo',genre:'sports',title:'Kick for 7',tag:'Kick. Score. Win big.',kind:'Made for Jaecoo',client:'Jaecoo',cover:P+'jaecoo-kick-7.webp',clip:P+'jaecoo-hover.mp4',text:'A rugby goal kicking game for a Jaecoo sponsorship activation.'},
-  Object.assign(sport('motorbike','Hot lap','One lap. Beat the clock.','Motorbike racing','motorbike'),{genre:'racing'}),
-  {id:'f1',genre:'racing',title:'LiveWire Racing',tag:'Your brand from the grid to the podium.',kind:'Made for LiveWire',client:'LiveWire',cover:P+'livewire-f1.webp',clip:P+'livewire-hover.mp4',text:'A fully branded F1 racing experience.'},
   {id:'starfighter',genre:'arcade',title:'Starfighter',tag:'Trench run arcade.',kind:'Made for LEGO Star Wars',client:'LEGO Star Wars',cover:P+'lego-starfighter.webp',clip:P+'lego-hover.mp4',text:'An arcade space shooter for a LEGO Star Wars fandom activation.'},
   {id:'uber',genre:'arcade',title:'Backseat Arcade',tag:'Vivid Sydney edition.',kind:'Made for Uber',client:'Uber',cover:P+'backseat-arcade.webp',clip:P+'uber-hover.mp4',text:'Arcade games for Uber riders, played in the back seat during Vivid Sydney.'},
   {id:'jumanji',genre:'arcade',title:'Jumanji Runner',tag:'Scoop. Dodge. Survive.',kind:'Made for Baskin-Robbins',client:'Baskin-Robbins',cover:P+'baskin-jumanji.webp',clip:P+'jumanji-hover.mp4',text:'A kids and family runner for Baskin-Robbins.'},
   {id:'netzero',genre:'arcade',title:'Net Zero Hero',tag:'Save the planet, one roll at a time.',kind:'Made for Regina',client:'Regina',cover:P+'net-zero-hero.webp',clip:P+'net-zero-hero-play.mp4',text:'A sustainability campaign game for Regina, built with Five by Five.'},
   {id:'heineken',genre:'puzzle',title:'Jigsaw Challenge',tag:'Solve it. Unlock epic.',kind:'Made for Heineken',client:'Heineken',cover:P+'heineken-jigsaw.webp',clip:P+'heineken-hover.mp4',play:'https://jonnyshan.github.io/heineken-puzzle/',text:'A jigsaw against the clock for Heineken\'s music platform, unlocking festival drops and nights out.'},
-  {id:'matchbox',genre:'puzzle',title:'Game On',tag:'Collect. Match. Conquer.',kind:'Made for Matchbox',client:'Matchbox',cover:P+'matchbox.webp',clip:P+'matchbox-hover.mp4',text:'A collecting and matching game for Matchbox loyalty.'},
+  {id:'matchbox',genre:'arcade',title:'Game On',tag:'Collect. Match. Conquer.',kind:'Made for Matchbox',client:'Matchbox',cover:P+'matchbox.webp',clip:P+'matchbox-hover.mp4',text:'A collecting and matching game for Matchbox loyalty.'},
   {id:'forgotten',genre:'puzzle',title:'Forgotten Island',tag:'Match the memories.',kind:'Memory match',ready:true,cover:P+'cover-forgotten.webp',clip:P+'forgotten-hover.mp4',play:'https://jonnyshan.github.io/forgotten-island-memory-match/',text:'A memory match played over a living video scene. Pair the keepsakes to bring two friends back together.'},
   {id:'flipper',genre:'puzzle',title:'Flipper',tag:'Flip it. Match it.',kind:'Memory match',ready:true,cover:P+'cover-flipper.webp',clip:P+'flipper-hover.mp4',play:'https://gizmo.gamify.com/s3/games.developer.gamify.com/games/8392ac5e-90de-48a5-9d7f-8f64a828e9e2/index.html',text:'The classic card flip. Every card face can carry a product, a logo or an offer.'},
   {id:'ten',genre:'puzzle',title:'TEN',tag:'Merge to ten.',kind:'Number puzzle',ready:true,cover:P+'cover-ten.webp',clip:P+'ten-hover.mp4',play:'https://gizmo.gamify.com/s3/games.developer.gamify.com/games/4aabee89-854e-4d70-a78d-8b0cbe03a0af/index.html',text:'Drop and merge tiles to climb the numbers. Simple to learn, hard to put down.'},
   {id:'words',genre:'puzzle',title:'Nonstop 4 Letters',tag:'Think fast. Spell faster.',kind:'Word puzzle',ready:true,cover:P+'cover-read.webp',clip:P+'read-hover.mp4',play:'https://gizmo.gamify.com/s3/games.developer.gamify.com/games/9ed78c7b-6149-45d1-9584-1d7a12ae8a96/index.html',text:'Make as many four letter words as you can before the clock runs out. Easy to theme around brand words.'},
   {id:'glass',genre:'puzzle',title:'Filled Glass',tag:'Fill it to the line.',kind:'Physics puzzle',ready:true,cover:P+'cover-glass.webp',clip:P+'glass-hover.mp4',play:'https://gizmo.gamify.com/s3/games.developer.gamify.com/games/47bbe391-c503-46c5-8db3-3a637704cd02/index.html',text:'Drop the balls and guide them into the glass. A physics puzzle made for a drinks brand.'},
-  {id:'prisoner',genre:'story',title:'Prisoner',tag:'What moral lines will you cross?',kind:'Made for Sky',client:'Sky',cover:P+'prisoner.webp',clip:P+'prisoner-hover.mp4',text:'A choice-driven story game for the launch of a Sky Original.'}
+  {id:'prisoner',genre:'puzzle',title:'Prisoner',tag:'What moral lines will you cross?',kind:'Made for Sky',client:'Sky',cover:P+'prisoner.webp',clip:P+'prisoner-hover.mp4',text:'A choice-driven story game for the launch of a Sky Original.'}
 ];
 const $=s=>document.querySelector(s);
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 $('#stats').innerHTML=[[GAMES.length,'games'],[GAMES.filter(g=>g.ready).length,'ready to reskin'],[GAMES.filter(g=>g.client).length,'brands shipped'],[GENRES.length,'genres']].map(([n,l])=>`<div><b>${n}</b>${l}</div>`).join('');
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 function card(g){
-  const badge=g.ready?'<span class="badge ready">Play now</span>':`<span class="badge">${esc(g.client)}</span>`;
+  const badge=g.ready?'<span class="badge ready">Play now</span>':g.soon?'<span class="badge ready">Coming soon</span>':`<span class="badge">${esc(g.client)}</span>`;
   const vid=g.clip?`<video muted loop playsinline preload="none" data-src="${g.clip}"></video>`:'';
   return `<button class="card" data-id="${g.id}"><div class="media"><img loading="lazy" src="${g.cover}" alt="">${vid}${badge}</div><div class="body"><h3>${esc(g.title)}</h3><div class="tag">${esc(g.tag)}</div><div class="kind">${esc(g.kind)}</div></div></button>`;
 }
@@ -171,14 +169,14 @@ function wire(){
 function open(id){
   const g=GAMES.find(x=>x.id===id); if(!g) return;
   document.querySelectorAll('.card video').forEach(v=>v.pause());
-  $('#stage').innerHTML=g.clip?`<video src="${g.clip}" autoplay muted loop playsinline controls></video>`:
+  $('#stage').innerHTML=g.soon?`<img src="${g.cover}" alt="" style="height:100%;object-fit:contain">`:g.clip?`<video src="${g.clip}" autoplay muted loop playsinline controls></video>`:
     `<div class="shots">${g.shots.map((s,i)=>`<figure><img src="${s}" alt=""><figcaption>${i?'In Volt':'In Gamify'}</figcaption></figure>`).join('')}</div>`;
   $('#mTitle').textContent=g.title; $('#mText').textContent=g.text;
   const a=[];
   if(g.play) a.push(`<a class="primary" href="${g.play}" target="_blank" rel="noopener">Play</a>`);
   if(g.volt) a.push(`<a href="${g.volt}" target="_blank" rel="noopener">Play in Volt</a>`);
   if(g.genre==='sports'&&g.ready||g.id==='motorbike') a.push(`<a href="../pack-maker/">Try your brand</a>`);
-  if(!g.ready) a.push(`<a class="${g.play?'':'primary'}" href="https://www.gamify.com/contact">Build one like this</a>`);
+  if(!g.ready&&!g.soon) a.push(`<a class="${g.play?'':'primary'}" href="https://www.gamify.com/contact">Build one like this</a>`);
   $('#mActions').innerHTML=a.join('');
   $('#dlg').showModal();
 }
