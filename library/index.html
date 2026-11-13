@@ -131,7 +131,7 @@ const GAMES = [
   {id:'jumanji',genre:'arcade',title:'Jumanji Runner',tag:'Scoop. Dodge. Survive.',kind:'Made for Baskin-Robbins',client:'Baskin-Robbins',cover:P+'baskin-jumanji.webp',clip:P+'jumanji-hover.mp4',text:'A kids and family runner for Baskin-Robbins.'},
   {id:'netzero',genre:'arcade',title:'Net Zero Hero',tag:'Save the planet, one roll at a time.',kind:'Made for Regina',client:'Regina',cover:P+'net-zero-hero.webp',clip:P+'net-zero-hero-play.mp4',text:'A sustainability campaign game for Regina, built with Five by Five.'},
   {id:'prisoner',genre:'story',title:'Prisoner',tag:'What moral lines will you cross?',kind:'Made for Sky',client:'Sky',cover:P+'prisoner.webp',clip:P+'prisoner-hover.mp4',text:'A choice-driven story game for the launch of a Sky Original.'},
-  {id:'debate',genre:'story',title:'The Great Debate',tag:'Pick the answer. Win the crowd.',kind:'Made for Mac\'s',client:"Mac's",cover:P+'macs-debate.webp',clip:P+'macs-debate.mp4',play:'https://debate.gamify.com',text:'An interactive video debate for Mac\'s. Two characters face off on stage, the player picks each answer and the crowd meter decides the winner.'},
+  {id:'debate',genre:'story',title:'The Great Debate',tag:'Pick the answer. Win the crowd.',kind:'Made for Mac\'s',client:"Mac's",cover:P+'macs-debate.webp',direct:true,play:'https://greatdebategame.com/',text:'An interactive video debate for Mac\'s. Two characters face off on stage, the player picks each answer and the crowd meter decides the winner.'},
   {id:'heineken',genre:'puzzle',title:'Jigsaw Challenge',tag:'Solve it. Unlock epic.',kind:'Made for Heineken',client:'Heineken',cover:P+'heineken-jigsaw.webp',clip:P+'heineken-hover.mp4',play:'https://jonnyshan.github.io/heineken-puzzle/',text:'A jigsaw against the clock for Heineken\'s music platform, unlocking festival drops and nights out.'},
   {id:'matchbox',genre:'arcade',title:'Game On',tag:'Collect. Match. Conquer.',kind:'Made for Matchbox',client:'Matchbox',cover:P+'matchbox.webp',clip:P+'matchbox-hover.mp4',text:'A collecting and matching game for Matchbox loyalty.'},
   {id:'forgotten',genre:'story',title:'Forgotten Island',tag:'Match the memories.',kind:'Memory match',ready:true,cover:P+'cover-forgotten.webp',clip:P+'forgotten-hover.mp4',play:'https://jonnyshan.github.io/forgotten-island-memory-match/',text:'A memory match played over a living video scene. Pair the keepsakes to bring two friends back together.'},
@@ -148,7 +148,7 @@ function card(g){
   const chip=g.ready?'Play now':g.soon?'Coming soon':'Made for '+g.client;
   const vid=g.clip?`<video muted loop playsinline preload="none" data-src="${g.clip}"></video>`:'';
   const inner=`<div class="media"><div class="pic"><img loading="lazy" src="${g.cover}" alt="">${vid}</div><span class="badge${g.ready||g.soon?' ready':''}"><i></i>${esc(chip)}</span></div><div class="bar"><h3>${esc(g.title)}</h3><b aria-hidden="true">&rarr;</b></div>`;
-  return g.genre==='sports'&&g.play
+  return (g.genre==='sports'||g.direct)&&g.play
     ? `<a class="card" href="${g.play}" target="_blank" rel="noopener" data-id="${g.id}">${inner}</a>`
     : `<button class="card" data-id="${g.id}">${inner}</button>`;
 }
