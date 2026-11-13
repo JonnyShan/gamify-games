@@ -107,7 +107,7 @@ dialog::backdrop{background:rgba(0,0,0,.82)}
 const GENRES = [
   {id:'sports', name:'Sports and racing', lede:'Our own sports and racing games, built by us and ready to play today. Each one takes a new brand in minutes: logo, colours and kits.'},
   {id:'arcade', name:'Arcade and action', lede:'Shooters, runners, collectors and arcade classics with a brand twist.'},
-  {id:'puzzle', name:'Story, puzzle and others', lede:'Story games for launches and shows, then fast, familiar puzzles for the 30 second window. Every tile, card and piece can carry a product.'}
+  {id:'puzzle', name:'Puzzle and others', lede:'Story games for launches and shows, then fast, familiar puzzles for the 30 second window. Every tile, card and piece can carry a product.'}
 ];
 const P='media/', DEMO='../';
 const sport=(id,title,tag,kind,path)=>({id,genre:'sports',title,tag,kind,ready:true,cover:P+'cover-'+id+'.webp',shots:[P+(['football','tennis','golf','motorbike'].includes(id)?'shot-':'cover-')+id+'.webp',P+'cover-'+id+'-volt.webp'],play:DEMO+path+'/',volt:DEMO+path+'/?brand=volt',
