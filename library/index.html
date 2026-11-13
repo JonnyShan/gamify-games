@@ -36,25 +36,29 @@ nav.tabs button small{opacity:.65;margin-left:6px;font-weight:500}
 section.genre{padding:10px 0 34px}
 section.genre h2{font-size:clamp(34px,5vw,52px);margin-bottom:6px}
 section.genre .lede{color:var(--muted);margin:0 0 18px;max-width:720px}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 14px;padding:0 10px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px 16px}
 @media (max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 8px}}
 section.genre h2 span{color:var(--accent)}
-.card{position:relative;display:block;width:100%;padding:0;text-align:left;border:1px solid rgba(31,130,208,.45);background:#000;color:var(--text);cursor:pointer;font:inherit;text-decoration:none;transform:skewX(-4deg);overflow:hidden;transition:border-color .2s,transform .2s}
-.card:hover{border-color:var(--accent);transform:skewX(-4deg) translateY(-3px)}
+.card{position:relative;display:flex;flex-direction:column;width:100%;padding:0;text-align:left;border:1px solid var(--line);border-radius:14px;background:var(--panel);color:var(--text);cursor:pointer;font:inherit;text-decoration:none;overflow:hidden;transition:border-color .2s,transform .2s}
+.card:hover{border-color:var(--accent);transform:translateY(-3px)}
 .card:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.card .media{position:relative;aspect-ratio:3/4;overflow:hidden}
-.card .pic{position:absolute;inset:0 -8%;transform:skewX(4deg)}
-.card .pic img,.card .pic video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.card .pic video{opacity:0;transition:opacity .25s}
-.card.playing .pic video{opacity:1}
-.card .badge{position:absolute;top:12px;left:16px;transform:skewX(4deg);display:flex;align-items:center;gap:8px;font:600 10px Barlow,sans-serif;letter-spacing:.2em;text-transform:uppercase;padding:7px 11px;background:rgba(0,0,0,.82);color:#fff}
-.card .badge i{width:6px;height:6px;border-radius:50%;background:#8A8A8A}
-.card .badge.ready i{background:var(--accent)}
-.card .bar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:12px 18px;background:#000;transform:skewX(4deg)}
-.card h3{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:800;font-size:21px;line-height:1.05;text-transform:uppercase;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.card .bar b{color:var(--accent);font-size:20px;flex:0 0 auto}
-@media (max-width:640px){.card h3{font-size:16px}.card .bar{padding:9px 12px}.card .badge{font-size:9px;letter-spacing:.14em;left:12px}}
+.card .media{position:relative;aspect-ratio:3/4;overflow:hidden;background:#000}
+.card .media .bg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(18px) brightness(.55)}
+.card .media img,.card .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.card .media video{opacity:0;transition:opacity .25s;background:#000}
+.card.playing .media video{opacity:1}
+.card .body{display:flex;flex-direction:column;gap:6px;padding:14px 16px 16px;flex:1}
+.card .row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.card h3{font-family:'Barlow Condensed',sans-serif;font-style:italic;font-weight:800;font-size:22px;line-height:1.05;text-transform:uppercase;margin:0}
+.card .row b{color:var(--accent);font-size:20px;flex:0 0 auto}
+.card .tag{color:var(--text);font-size:14px;font-weight:500}
+.card .desc{color:var(--muted);font-size:13px;line-height:1.45}
+.card .chip{margin-top:auto;padding-top:8px;display:flex;align-items:center;gap:8px;font:600 10px Barlow,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.card .chip i{width:6px;height:6px;border-radius:50%;background:#8A8A8A;flex:0 0 auto}
+.card .chip.ready i{background:var(--accent)}
+.card .chip.ready{color:var(--text)}
+@media (max-width:640px){.card h3{font-size:18px}.card .body{padding:10px 12px 12px}.card .desc{display:none}.card .tag{font-size:13px}.card .chip{font-size:9px;letter-spacing:.12em}}
 .band{margin:10px 0 40px;border-radius:18px;padding:28px;background:linear-gradient(120deg,#0E3A63,#1F82D0);display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center}
 .band h2{font-size:clamp(32px,4.5vw,48px)}
 .band p{margin:8px 0 0;max-width:620px;color:#DCEBFA}
@@ -147,7 +151,11 @@ function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','
 function card(g){
   const chip=g.ready?'Play now':g.soon?'Coming soon':'Made for '+g.client;
   const vid=g.clip?`<video muted loop playsinline preload="none" data-src="${g.clip}"></video>`:'';
-  const inner=`<div class="media"><div class="pic"><img loading="lazy" src="${g.cover}" alt="">${vid}</div><span class="badge${g.ready||g.soon?' ready':''}"><i></i>${esc(chip)}</span></div><div class="bar"><h3>${esc(g.title)}</h3><b aria-hidden="true">&rarr;</b></div>`;
+  const go=g.clip&&!g.direct?'&#9654;':'&rarr;';
+  const inner=`<div class="media"><div class="bg" style="background-image:url('${g.cover}')"></div><img loading="lazy" src="${g.cover}" alt="">${vid}</div>`+
+    `<div class="body"><div class="row"><h3>${esc(g.title)}</h3><b aria-hidden="true">${go}</b></div>`+
+    (g.tag?`<div class="tag">${esc(g.tag)}</div>`:'')+(g.text?`<div class="desc">${esc(g.text)}</div>`:'')+
+    `<div class="chip${g.ready||g.soon?' ready':''}"><i></i>${esc(chip)}</div></div>`;
   return (g.genre==='sports'||g.direct)&&g.play
     ? `<a class="card" href="${g.play}" target="_blank" rel="noopener" data-id="${g.id}">${inner}</a>`
     : `<button class="card" data-id="${g.id}">${inner}</button>`;
