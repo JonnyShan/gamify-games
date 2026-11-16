@@ -1,0 +1,8 @@
+football|10.8|FOOTBALL
+cricket|2.8|CRICKET
+racing|2.0|GRAND PRIX
+basketball|28.2|BASKETBALL
+motorbike|4.0|MOTORBIKE RACING
+american|10.5|AMERICAN FOOTBALL
+tennis|40.0|TENNIS
+golf|11.5|GOLF
