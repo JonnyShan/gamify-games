@@ -20,5 +20,5 @@ h2{font-weight:900;font-size:92px;margin:0;letter-spacing:.01em}
  await shot(`<div class="full"><img src="${mark}"><h1>Choose<br>your <span>arena.</span></h1></div>`,'intro.png');
  await shot(`<div class="full"><img src="${mark}"><h2>Same game. Your brand.</h2><div class="url">gamify.com</div></div>`,'outro.png');
  const names=fs.readFileSync(S+'/picks.txt','utf8').trim().split('\n').map(l=>l.split('|'));
- for(const [id,,,title] of names) await shot(`<div class="lab"><div class="pill"><span>${title}</span></div><div class="sub"><span>Play it in your brand</span></div></div>`,'lab-'+id+'.png',true);
+ for(const [id,,,title] of names) await shot(`<div class="lab" style="${id==='american'?'bottom:150px':''}"><div class="pill"><span>${title}</span></div><div class="sub"><span>Play it in your brand</span></div></div>`,'lab-'+id+'.png',true);
  const ok=await p.evaluate(()=>document.fonts.check('900 italic 40px "Barlow Condensed"'));console.log('font',ok);await b.close();})();

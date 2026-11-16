@@ -7,7 +7,8 @@ def run(a): subprocess.run(['ffmpeg','-nostdin','-loglevel','error','-y']+a,chec
 run(['-loop','1','-t','1.8','-i',S+'/intro.png','-vf',f'fps={FPS},format=yuv420p,zoompan=z=\'1+0.04*on/54\':d=1:s=1080x1920:fps={FPS}','-c:v','libx264','-crf','18',S+'/s-intro.mp4'])
 run(['-loop','1','-t','2.8','-i',S+'/outro.png','-vf',f'fps={FPS},format=yuv420p','-c:v','libx264','-crf','18',S+'/s-outro.mp4'])
 segs.append((S+'/s-intro.mp4',1.8))
-for id,f,ss,title in picks:
+for id,f,ss,title,dur in picks:
+    D=float(dur)
     if 'ScreenRecording' in f: base='crop=1080:1950:0:145,scale=1080:-2,crop=1080:1920'
     else: base='scale=1080:1920:flags=lanczos'
     out=f'{S}/s-{id}.mp4'
@@ -15,6 +16,7 @@ for id,f,ss,title in picks:
          f'[0:v]{base},fps={FPS},setsar=1[v];[1:v]format=rgba,fade=in:st=0.15:d=0.3:alpha=1[l];[v][l]overlay=0:0,format=yuv420p',
          '-an','-c:v','libx264','-crf','18',out])
     segs.append((out,D))
+    D=3.5
 segs.append((S+'/s-outro.mp4',2.8))
 inp=[]; [inp.extend(['-i',p]) for p,_ in segs]
 fc=[]; last='[0:v]'; t=segs[0][1]

@@ -1,6 +1,6 @@
 # Gamify sports promo
 
-`gamify-sports-promo-9x16.mp4`: 30 seconds, 1080x1920. Intro card, then 3.5 seconds of each of the 8 sports games with a label, then "Same game. Your brand. gamify.com". No audio yet.
+`gamify-sports-promo-9x16.mp4`: 31.5 seconds, 1080x1920. Intro card, then 3.5 to 4.2 seconds of each of the 8 sports games with a label, then "Same game. Your brand. gamify.com". No audio yet.
 
 How it was made:
 - Football, cricket, basketball, American football, tennis and golf were cut from Jonny's phone screen recordings (16 Nov 2026). Grand Prix and Hot Lap come from `tools/record-clip.js` (game autopilot).
