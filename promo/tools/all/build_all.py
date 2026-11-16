@@ -1,12 +1,14 @@
 import subprocess, sys
 O=sys.argv[1]; X=0.25; FPS=30
-items=[l.rstrip('\n').split('|') for l in open(O+'/items.txt') if l.strip()]
+IT=sys.argv[2] if len(sys.argv)>2 else O+'/items.txt'; OUTF=sys.argv[3] if len(sys.argv)>3 else O+'/gamify-all-games-promo-9x16.mp4'
+items=[l.rstrip('\n').split('|') for l in open(IT) if l.strip()]
 def run(a): subprocess.run(['ffmpeg','-nostdin','-loglevel','error','-y']+a,check=True)
 segs=[]
 run(['-loop','1','-t','2.0','-i',O+'/intro.png','-vf',f'fps={FPS},format=yuv420p','-c:v','libx264','-crf','18',O+'/s-intro.mp4']); segs.append((O+'/s-intro.mp4',2.0))
 for id,kind,f,ss,d,title,sub,bottom in items:
     d=float(d); out=f'{O}/s-{id}.mp4'
     if kind=='phone': v='[0:v]crop=1080:1950:0:145,scale=1080:-2,crop=1080:1920,fps=30,setsar=1[v]'
+    elif kind=='phone2': v='[0:v]crop=886:1600:0:119,scale=1080:-2,crop=1080:1920,fps=30,setsar=1[v]'
     elif kind=='full': v='[0:v]scale=1080:1920:flags=lanczos,fps=30,setsar=1[v]'
     else:
         pre='crop=ih*3/4:ih,' if kind=='land' else ''
@@ -23,5 +25,5 @@ fc=[]; last='[0:v]'; t=segs[0][1]
 for i in range(1,len(segs)):
     off=t-X; lab=f'[x{i}]'; fc.append(f'{last}[{i}:v]xfade=transition=fade:duration={X}:offset={off:.3f}{lab}'); last=lab; t=off+segs[i][1]
 fc.append(f'{last}format=yuv420p[out]')
-run(inp+['-filter_complex',';'.join(fc),'-map','[out]','-c:v','libx264','-crf','23','-preset','slow','-movflags','+faststart','-r',str(FPS),O+'/gamify-all-games-promo-9x16.mp4'])
+run(inp+['-filter_complex',';'.join(fc),'-map','[out]','-c:v','libx264','-crf','23','-preset','slow','-movflags','+faststart','-r',str(FPS),OUTF])
 print('total',round(t,2))

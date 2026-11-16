@@ -1,0 +1,17 @@
+football|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/672290b2-ScreenRecording_11-16-2026_14-09-33_1.mp4|11.9|2.0|FOOTBALL|SPORTS|540
+starfighter|land|/home/user/gamify-games/library/media/lego-hover.mp4|4.5|4.8|STARFIGHTER|ARCADE  /  MADE FOR LEGO STAR WARS|150
+cricket|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/358547d3-ScreenRecording_11-16-2026_14-10-41_1.mp4|0.3|2.0|CRICKET|SPORTS|540
+uber|frame|/home/user/gamify-games/library/media/uber-hover.mp4|4.0|2.4|BACKSEAT ARCADE|ARCADE  /  MADE FOR UBER|150
+racing|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/clips/racing-hover.mp4|2.0|2.0|GRAND PRIX|SPORTS|540
+jumanji|land|/home/user/gamify-games/library/media/jumanji-hover.mp4|5.0|2.4|JUMANJI RUNNER|ARCADE  /  MADE FOR BASKIN-ROBBINS|150
+basketball|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/e0ff50b2-ScreenRecording_11-16-2026_14-11-31_1.mp4|29.2|2.0|BASKETBALL|SPORTS|540
+jackal|phone2|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/9b082195-ScreenRecording_11-16-2026_16-04-00_1_small.mp4|39.8|2.8|SNIPER|ACTION  /  AIM WITH YOUR PHONE|150
+motorbike|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/clips/motorbike-hover.mp4|4.5|2.0|MOTORBIKE RACING|SPORTS|540
+matchbox|land|/home/user/gamify-games/library/media/matchbox-hover.mp4|1.5|2.4|GAME ON|ARCADE  /  MADE FOR MATCHBOX|150
+american|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/921772c2-ScreenRecording_11-16-2026_14-12-33_1.mp4|4.6|2.0|AMERICAN FOOTBALL|SPORTS|150
+prisoner|frame|/home/user/gamify-games/library/media/prisoner-hover.mp4|5.0|2.4|PRISONER|STORY  /  MADE FOR SKY|150
+rugby|phone2|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/5cfdd94d-ScreenRecording_11-16-2026_16-07-05_1_small.mp4|14.4|4.0|RUGBY|SPORTS|540
+jaecoo|frame|/home/user/gamify-games/library/media/jaecoo-hover.mp4|6.0|2.4|KICK FOR 7|ARCADE  /  MADE FOR JAECOO|150
+tennis|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/df6d34bd-ScreenRecording_11-16-2026_14-13-38_1.mp4|41.2|2.0|TENNIS|SPORTS|540
+debate|frame|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/promo/debate/debate-play.mp4|0.2|2.6|THE GREAT DEBATE|STORY  /  MADE FOR MAC'S|150
+golf|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/b896adde-ScreenRecording_11-16-2026_14-15-14_1.mp4|12.2|2.0|GOLF|SPORTS|540

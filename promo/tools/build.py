@@ -9,7 +9,8 @@ run(['-loop','1','-t','2.8','-i',S+'/outro.png','-vf',f'fps={FPS},format=yuv420p
 segs.append((S+'/s-intro.mp4',1.8))
 for id,f,ss,title,dur in picks:
     D=float(dur)
-    if 'ScreenRecording' in f: base='crop=1080:1950:0:145,scale=1080:-2,crop=1080:1920'
+    if '_small' in f: base='crop=886:1600:0:119,scale=1080:-2,crop=1080:1920'
+    elif 'ScreenRecording' in f: base='crop=1080:1950:0:145,scale=1080:-2,crop=1080:1920'
     else: base='scale=1080:1920:flags=lanczos'
     out=f'{S}/s-{id}.mp4'
     run(['-ss',ss,'-t',str(D),'-i',f,'-loop','1','-t',str(D),'-i',f'{S}/lab-{id}.png','-filter_complex',
