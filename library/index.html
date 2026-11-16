@@ -99,6 +99,23 @@ dialog::backdrop{background:rgba(3,4,6,.86)}
 .modal .close{position:absolute;top:10px;right:10px;width:44px;height:44px;border-radius:0;border:1px solid var(--line);background:rgba(0,0,0,.6);color:#fff;font-size:22px;cursor:pointer;z-index:2}
 @media (max-width:640px){.modal .info{grid-template-columns:1fr}.modal .actions{justify-content:flex-start}.modal .stage{aspect-ratio:4/5}}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.card,.card .media video,nav.tabs button{transition:none}.card:hover{transform:skewX(var(--skew))}}
+
+.clients{padding:20px 0 46px}
+.clients h2{font-size:clamp(30px,4.6vw,48px);margin-bottom:8px}
+.clients h2 span{color:var(--accent)}
+.clients .lede{color:var(--muted);margin:0 0 22px}
+.marquee{overflow:hidden;padding:6px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee .track{display:flex;width:max-content;animation:logos 60s linear infinite}
+.marquee:hover .track{animation-play-state:paused}
+.clients .set{display:flex;gap:14px;margin:0;padding:0 14px 0 0;list-style:none}
+.clients .logo{flex:0 0 auto;width:156px;height:76px;background:#fff;border:1px solid rgba(31,130,208,.4);transform:skewX(var(--skew));display:grid;place-items:center}
+.clients .logo span{transform:skewX(var(--unskew));display:grid;place-items:center;width:124px;height:52px}
+.clients .logo img{max-width:124px;max-height:48px;width:auto;height:auto;display:block}
+.clients .logo img.mark{height:44px;width:44px}
+.clients .logo img.mark.wide{width:104px;height:104px;max-width:none;max-height:none}
+@keyframes logos{to{transform:translateX(-50%)}}
+@media (max-width:640px){.clients .logo{width:120px;height:62px}.clients .logo span{width:96px;height:42px}.clients .logo img{max-width:96px;max-height:38px}.clients .logo img.mark{width:36px;height:36px}.clients .logo img.mark.wide{width:84px;height:84px}}
+@media (prefers-reduced-motion: reduce){.marquee{-webkit-mask-image:none;mask-image:none}.marquee .track{animation:none;width:auto;flex-wrap:wrap}.clients .set{flex-wrap:wrap;justify-content:center;padding:0 16px;gap:12px}.clients .set[aria-hidden]{display:none}}
 </style>
 </head>
 <body>
@@ -117,6 +134,10 @@ dialog::backdrop{background:rgba(3,4,6,.86)}
 </div>
 <nav class="tabs" aria-label="Game types"><div class="wrap"><div class="row" id="tabs"></div></div></nav>
 <main class="wrap" id="main"></main>
+<section class="clients" aria-labelledby="clients-h">
+  <div class="wrap"><h2 class="display" id="clients-h">Brands we have <span>played with</span></h2><p class="lede">Games built for these brands, by Gamify and through their agencies.</p></div>
+  <div class="marquee"><div class="track"><ul class="set"><li class="logo"><span><img src="logos/kfc.png" alt="KFC" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/uber.png" alt="Uber" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/sky.png" alt="Sky" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/bbc.png" alt="BBC" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/dell.png" alt="Dell" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/mcdonalds.svg" alt="McDonald's" loading="lazy" class="mark"></span></li><li class="logo"><span><img src="logos/adidas.svg" alt="adidas" loading="lazy" class="mark"></span></li><li class="logo"><span><img src="logos/audi.svg" alt="Audi" loading="lazy" class="mark wide"></span></li><li class="logo"><span><img src="logos/shell.svg" alt="Shell" loading="lazy" class="mark"></span></li><li class="logo"><span><img src="logos/tommy-hilfiger.png" alt="Tommy Hilfiger" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/nissan.png" alt="Nissan" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/wendys.png" alt="Wendy's" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/jaecoo.png" alt="Jaecoo" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/banana-boat.png" alt="Banana Boat" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/resmed.png" alt="ResMed" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/regina.png" alt="Regina" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/pita-pit.png" alt="Pita Pit" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/redballoon.png" alt="RedBalloon" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/v-energy.png" alt="V Energy" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/donut-papi.png" alt="Donut Papi" loading="lazy" class=""></span></li></ul><ul class="set" aria-hidden="true"><li class="logo"><span><img src="logos/kfc.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/uber.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/sky.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/bbc.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/dell.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/mcdonalds.svg" alt="" loading="lazy" class="mark"></span></li><li class="logo"><span><img src="logos/adidas.svg" alt="" loading="lazy" class="mark"></span></li><li class="logo"><span><img src="logos/audi.svg" alt="" loading="lazy" class="mark wide"></span></li><li class="logo"><span><img src="logos/shell.svg" alt="" loading="lazy" class="mark"></span></li><li class="logo"><span><img src="logos/tommy-hilfiger.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/nissan.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/wendys.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/jaecoo.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/banana-boat.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/resmed.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/regina.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/pita-pit.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/redballoon.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/v-energy.png" alt="" loading="lazy" class=""></span></li><li class="logo"><span><img src="logos/donut-papi.png" alt="" loading="lazy" class=""></span></li></ul></div></div>
+</section>
 <div class="wrap">
   <footer>
     <span>Gamify. Branded games that people choose to play.</span>
