@@ -159,7 +159,9 @@ const GENRES = [
   {id:'puzzle', name:'Puzzle', lede:'Fast, familiar puzzles for the 30 second window. Every tile, card and piece can carry a product.'}
 ];
 const P='media/', DEMO='../';
-const sport=(id,title,path)=>({id,genre:'sports',title,ready:true,cover:P+'sport-'+id+'.webp',play:DEMO+path+'/'});
+// A sport gets a hover clip once media/sport-<id>-hover.mp4 exists: list its id here.
+const SPORT_CLIPS=['football','cricket','f1','basketball','motorbike','american-football','tennis','golf'];
+const sport=(id,title,path)=>Object.assign({id,genre:'sports',title,ready:true,cover:P+'sport-'+id+'.webp',play:DEMO+path+'/'},SPORT_CLIPS.includes(id)?{clip:P+'sport-'+id+'-hover.mp4'}:{});
 const GAMES = [
   sport('football','Football','football'),
   sport('cricket','Cricket','cricket'),
@@ -192,7 +194,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','
 function card(g){
   const chip=g.ready?'Play now':g.soon?'Coming soon':'Made for '+g.client;
   const vid=g.clip?`<video muted loop playsinline preload="none" data-src="${g.clip}"></video>`:'';
-  const go=g.clip&&!g.direct?'&#9654;':'&rarr;';
+  const go=g.clip&&!g.direct&&g.genre!=='sports'?'&#9654;':'&rarr;';
   const inner=`<div class="media"><div class="bg" style="background-image:url('${g.cover}')"></div><img loading="lazy" src="${g.cover}" alt="">${vid}</div>`+
     `<div class="chip${g.ready||g.soon?' ready':''}"><i></i>${esc(chip)}</div>`+
     `<div class="body"><div class="row"><h3>${esc(g.title)}</h3><b aria-hidden="true">${go}</b></div>`+
