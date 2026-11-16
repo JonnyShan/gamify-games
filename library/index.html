@@ -160,7 +160,7 @@ const GENRES = [
 ];
 const P='media/', DEMO='../';
 // A sport gets a hover clip once media/sport-<id>-hover.mp4 exists: list its id here.
-const SPORT_CLIPS=['f1','motorbike'];
+const SPORT_CLIPS=['football','cricket','f1','basketball','motorbike','american-football','tennis','golf'];
 const sport=(id,title,path)=>Object.assign({id,genre:'sports',title,ready:true,cover:P+'sport-'+id+'.webp',play:DEMO+path+'/'},SPORT_CLIPS.includes(id)?{clip:P+'sport-'+id+'-hover.mp4'}:{});
 const GAMES = [
   sport('football','Football','football'),
