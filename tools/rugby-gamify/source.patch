@@ -1,0 +1,24 @@
+diff --git a/src/sim/tunables.json b/src/sim/tunables.json
+index cade742..fe16973 100644
+--- a/src/sim/tunables.json
++++ b/src/sim/tunables.json
+@@ -622,8 +622,8 @@
+     "shift": 0.14,
+     "insideFieldM": 4,
+     "tryLineMarginM": 4,
+-    "followXPos": 1,
+-    "followXLook": 1,
++    "followXPos": 0.45,
++    "followXLook": 0.6,
+     "lineFrameFraction": 0.15,
+     "kickoffFrame": 0.1,
+     "defenceFrame": 0.45,
+@@ -941,7 +941,7 @@
+     "threeStarMargin": 10
+   },
+   "match": {
+-    "opponentId": "tide",
++    "opponentId": "monsoon",
+     "kickingTeam": "away",
+     "halfMinutes": 7
+   },

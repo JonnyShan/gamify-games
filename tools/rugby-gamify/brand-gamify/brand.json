@@ -1,0 +1,72 @@
+{
+  "id": "gamify",
+  "name": "Gamify",
+  "teamName": "Gamify",
+  "gameSubtitle": "Sevens",
+  "tagline": "Play it. Own it.",
+  "title": {
+    "lines": [
+      {
+        "text": "Gamify"
+      },
+      {
+        "text": "Rugby",
+        "accent": true
+      }
+    ],
+    "formatLine": "Sevens"
+  },
+  "colors": {
+    "primary": "#000000",
+    "accent": "#1F82D0",
+    "text": "#FFFFFF",
+    "textMuted": "#8A8A8A",
+    "pitchLine": "#FFFFFF"
+  },
+  "logo": {
+    "static": "gamify-wordmark.svg",
+    "animatedSvg": "gamify-wordmark.svg",
+    "animatedFrames": "gamify-wordmark.svg",
+    "animatedFps": 30,
+    "mark": "gamify-mark.svg"
+  },
+  "textures": {
+    "inGoal": "ingoal.png",
+    "halfway": "halfway.png",
+    "boards": [
+      "board-1.png",
+      "board-2.png",
+      "board-3.png",
+      "board-4.png"
+    ],
+    "postPad": "postpad.png",
+    "flag": "flag.png",
+    "crowdPattern": "crowd.png",
+    "screen": "screen-loop.png",
+    "ball": "ball.png"
+  },
+  "kits": {
+    "home": {
+      "jersey": "#1F82D0",
+      "panels": "#141518",
+      "numbers": "#FFFFFF",
+      "shorts": "#141518",
+      "stripe": "#FFFFFF",
+      "socks": "#1F82D0",
+      "sockTop": "#141518"
+    },
+    "away": {
+      "jersey": "#F1F1F1",
+      "panels": "#141518",
+      "numbers": "#141518",
+      "shorts": "#141518",
+      "stripe": "#1F82D0",
+      "socks": "#F1F1F1",
+      "sockTop": "#141518"
+    }
+  },
+  "fonts": {
+    "display": "BarlowCondensed-BoldItalic.woff2",
+    "body": "Inter-Regular.woff2"
+  }
+}
