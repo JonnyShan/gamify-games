@@ -4,7 +4,7 @@ racing|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratc
 basketball|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/e0ff50b2-ScreenRecording_11-16-2026_14-11-31_1.mp4|29.2|1.6|BASKETBALL|SPORTS|540
 motorbike|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/clips/motorbike-hover.mp4|4.5|1.6|MOTORBIKE RACING|SPORTS|540
 american|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/921772c2-ScreenRecording_11-16-2026_14-12-33_1.mp4|4.6|2.0|AMERICAN FOOTBALL|SPORTS|150
-rugby|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/promo/rugby/rugby-cut.mp4|0|7.1|RUGBY|SPORTS|540
+rugby|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/promo/rugby/rugby-cut.mp4|0|5.0|RUGBY|SPORTS|540
 tennis|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/df6d34bd-ScreenRecording_11-16-2026_14-13-38_1.mp4|41.2|1.6|TENNIS|SPORTS|540
 golf|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/b896adde-ScreenRecording_11-16-2026_14-15-14_1.mp4|32.0|4.9|GOLF|SPORTS|540
 starfighter|land|/home/user/gamify-games/library/media/lego-hover.mp4|4.5|3.3|STARFIGHTER|ARCADE  /  MADE FOR LEGO STAR WARS|150

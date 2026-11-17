@@ -9,7 +9,7 @@ motorbike|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scr
 matchbox|land|/home/user/gamify-games/library/media/matchbox-hover.mp4|1.5|2.4|GAME ON|ARCADE  /  MADE FOR MATCHBOX|150
 basketball|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/e0ff50b2-ScreenRecording_11-16-2026_14-11-31_1.mp4|29.2|2.0|BASKETBALL|SPORTS|540
 prisoner|frame|/home/user/gamify-games/library/media/prisoner-hover.mp4|5.0|2.4|PRISONER|STORY  /  MADE FOR SKY|150
-rugby|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/promo/rugby/rugby-cut.mp4|0|7.1|RUGBY|SPORTS|540
+rugby|full|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/promo/rugby/rugby-cut.mp4|0|5.0|RUGBY|SPORTS|540
 tennis|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/df6d34bd-ScreenRecording_11-16-2026_14-13-38_1.mp4|41.2|2.0|TENNIS|SPORTS|540
 debate|frame|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/promo/debate/debate-play.mp4|0.2|2.6|THE GREAT DEBATE|STORY  /  MADE FOR MAC'S|150
 golf|phone|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/b896adde-ScreenRecording_11-16-2026_14-15-14_1.mp4|32.0|4.9|GOLF|SPORTS|540
