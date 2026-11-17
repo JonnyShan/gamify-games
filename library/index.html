@@ -52,6 +52,7 @@ section.genre h2{font-size:clamp(34px,5vw,52px);margin-bottom:8px}
 section.genre h2 span{color:var(--accent)}
 section.genre .lede{color:var(--muted);margin:0 0 22px;max-width:720px}
 .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px 18px;padding:0 10px}
+@media (min-width:901px){#g-sports .grid{grid-template-columns:repeat(10,minmax(0,1fr))}#g-sports .grid>.card{grid-column:span 2}#g-sports .grid>.card:first-child{grid-column:2 / span 2}}
 @media (max-width:900px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:640px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 12px;padding:0 6px}}
 .card{position:relative;display:block;width:100%;padding:0;text-align:left;border:1px solid var(--line);border-radius:0;background:#000;color:var(--text);cursor:pointer;font:inherit;text-decoration:none;overflow:hidden;transform:skewX(var(--skew));transition:border-color .2s,transform .2s}
@@ -170,6 +171,7 @@ const GAMES = [
   sport('american-football','American football','american-football'),
   sport('tennis','Tennis','tennis'),
   sport('golf','Golf','golf'),
+  sport('rugby','Rugby','rugby'),
   {id:'jaecoo',fit:.86,genre:'arcade',title:'Kick for 7',tag:'Kick. Score. Win big.',kind:'Made for Jaecoo',client:'Jaecoo',cover:P+'jaecoo-kick-7.webp',clip:P+'jaecoo-hover.mp4',text:'A rugby goal kicking game for a Jaecoo sponsorship activation.'},
   {id:'starfighter',fit:.86,genre:'arcade',title:'Starfighter',tag:'Trench run arcade.',kind:'Made for LEGO Star Wars',client:'LEGO Star Wars',cover:P+'lego-starfighter.webp',clip:P+'lego-hover.mp4',text:'An arcade space shooter for a LEGO Star Wars fandom activation.'},
   {id:'uber',fit:.86,genre:'arcade',title:'Backseat Arcade',tag:'Vivid Sydney edition.',kind:'Made for Uber',client:'Uber',cover:P+'backseat-arcade.webp',clip:P+'uber-hover.mp4',text:'Arcade games for Uber riders, played in the back seat during Vivid Sydney.'},
