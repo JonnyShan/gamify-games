@@ -117,9 +117,31 @@ dialog::backdrop{background:rgba(3,4,6,.86)}
 @keyframes logos{to{transform:translateX(-50%)}}
 @media (max-width:640px){.clients .logo{width:120px;height:62px}.clients .logo span{width:96px;height:42px}.clients .logo img{max-width:96px;max-height:38px}.clients .logo img.mark{width:36px;height:36px}.clients .logo img.mark.wide{width:84px;height:84px}}
 @media (prefers-reduced-motion: reduce){.marquee{-webkit-mask-image:none;mask-image:none}.marquee .track{animation:none;width:auto;flex-wrap:wrap}.clients .set{flex-wrap:wrap;justify-content:center;padding:0 16px;gap:12px}.clients .set[aria-hidden]{display:none}}
+
+/* embed mode: shown inside gamify.com/games */
+html.embed .shapes,html.embed header.top,html.embed section.hero,html.embed footer{display:none}
+html.embed,html.embed body{background:transparent}
+html.embed dialog[open]{position:absolute;top:var(--vt,0px);margin:12px auto;max-height:calc(var(--vh,100vh) - 24px);overflow:auto}
 </style>
 </head>
 <body>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search), embed=q.has('embed')||window.self!==window.top;
+  if(!embed) return;
+  document.documentElement.classList.add('embed');
+  window.LIB_EMBED=true;
+  function post(m){try{parent.postMessage(Object.assign({src:'gamify-library'},m),'*')}catch(_){}}
+  function size(){post({type:'height',h:document.documentElement.scrollHeight})}
+  addEventListener('load',size);
+  new ResizeObserver(size).observe(document.documentElement);
+  addEventListener('message',function(e){var d=e.data||{};if(d.src!=='gamify-games-host')return;
+    if(d.type==='view'){document.documentElement.style.setProperty('--vt',Math.max(0,d.top)+'px');document.documentElement.style.setProperty('--vh',d.vh+'px');}});
+  document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;
+    if(!a.target||a.target==='_self') a.target='_top';},true);
+  window.libScrollTo=function(y){post({type:'scroll',y:y})};
+})();
+</script>
 <div class="page">
 <div class="shapes" aria-hidden="true"><span class="l" style="top:7%;transform:rotate(-10deg)"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="42"/></svg></span><span class="r" style="top:20%;transform:rotate(8deg)"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><line x1="16" y1="16" x2="84" y2="84"/><line x1="84" y1="16" x2="16" y2="84"/></svg></span><span class="l" style="top:36%;transform:rotate(-6deg)"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><polygon points="50,10 92,86 8,86"/></svg></span><span class="r" style="top:52%;transform:rotate(12deg)"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><rect x="14" y="14" width="72" height="72"/></svg></span><span class="r" style="top:70%;transform:rotate(-8deg)"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><circle cx="50" cy="50" r="42"/></svg></span><span class="l" style="top:86%;transform:rotate(10deg)"><svg viewBox="0 0 100 100" aria-hidden="true" focusable="false"><line x1="16" y1="16" x2="84" y2="84"/><line x1="84" y1="16" x2="16" y2="84"/></svg></span></div>
 <div class="wrap">
@@ -246,7 +268,7 @@ $('#tabs').innerHTML=tabs.map(t=>`<button class="slant" data-f="${t.id}" aria-pr
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;
   document.querySelectorAll('#tabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
   render(b.dataset.f); try{localStorage.setItem('lib-tab',b.dataset.f)}catch(_){}
-  scrollTo({top:document.querySelector('nav.tabs').offsetTop,behavior:reduce?'auto':'smooth'});});
+  const y=document.querySelector('nav.tabs').offsetTop; if(window.LIB_EMBED) libScrollTo(y); else scrollTo({top:y,behavior:reduce?'auto':'smooth'});});
 render('all');
 </script>
 </body>
