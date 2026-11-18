@@ -1,0 +1,9 @@
+football|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/672290b2-ScreenRecording_11-16-2026_14-09-33_1.mp4|10.8|FOOTBALL|3.5
+cricket|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/358547d3-ScreenRecording_11-16-2026_14-10-41_1.mp4|0.1|CRICKET|4.2
+racing|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/clips/racing-cut.mp4|0|GRAND PRIX|3.6
+basketball|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/e0ff50b2-ScreenRecording_11-16-2026_14-11-31_1.mp4|28.2|BASKETBALL|3.5
+motorbike|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/clips/motorbike-hover.mp4|4.0|MOTORBIKE RACING|3.5
+american|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/921772c2-ScreenRecording_11-16-2026_14-12-33_1.mp4|4.0|AMERICAN FOOTBALL|4.0
+rugby|/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad/promo/rugby/rugby-cut.mp4|0|RUGBY|5.0
+tennis|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/df6d34bd-ScreenRecording_11-16-2026_14-13-38_1.mp4|40.0|TENNIS|3.5
+golf|/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/b896adde-ScreenRecording_11-16-2026_14-15-14_1.mp4|32.0|GOLF|4.9
