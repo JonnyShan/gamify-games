@@ -1341,6 +1341,10 @@ async function boot() {
     logo.src = BRAND.logo;
     await Promise.race([logo.decode().then(() => { TX.setLogo(logo); setCarLogo(logo); }, () => {}), new Promise(r => setTimeout(r, 3000))]);
   }
+  if (BRAND.billboards && BRAND.billboards.length) {
+    const load = (src) => { const i = new Image(); i.src = src; return i.decode().then(() => i, () => null); };
+    await Promise.race([Promise.all(BRAND.billboards.map(load)).then((imgs) => TX.setBillboards(imgs)), new Promise(r => setTimeout(r, 4000))]);
+  }
   let renderer;
   try {
     renderer = new THREE.WebGLRenderer({ canvas: $('gl'), antialias: false, powerPreference: 'high-performance', stencil: false });

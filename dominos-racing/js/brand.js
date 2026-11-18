@@ -50,8 +50,12 @@ const CORE = {
   logo: 'assets/brand/logo.svg',
   // Logo for the dark menus, HUD and results screen (placeholder domino tile + DOMINO'S wordmark). null = text wordmark.
   logoUi: 'assets/brand/logo-ui.svg',
-  // Title-screen product shot. null = none.
-  product: null,
+  // Title-screen product shot (Higgsfield-generated pizza, background removed). null = none.
+  product: { img: 'assets/brand/product.webp', alt: 'Pepperoni pizza' },
+  // Photo hoardings (Higgsfield-generated, 1024x320, no logos baked in): trackside boards 2 and 3. [] = text boards only.
+  billboards: ['assets/brand/board1.webp', 'assets/brand/board2.webp'],
+  // Loading-screen backdrop (Higgsfield-generated key art). null = plain gradient.
+  keyart: 'assets/brand/keyart.webp',
 
   // Page title and link-preview text.
   title: "Domino's Grand Prix",
@@ -120,7 +124,9 @@ async function brandFor(id) {
   const b = merge(merge(CORE, derived), pack);
   b.logo = pack.logo ? dir + pack.logo : null;
   b.logoUi = pack.logoUi ? dir + pack.logoUi : b.logo;
-  b.product = pack.product ? dir + pack.product : null;
+  b.product = pack.product ? { img: dir + pack.product, alt: name } : CORE.product;
+  if (pack.billboards) b.billboards = pack.billboards.map((f) => dir + f);
+  if (pack.keyart) b.keyart = dir + pack.keyart;
   b.repaint = accent.toLowerCase() === CORE.accent.toLowerCase() ? null : { from: CORE.accent, to: accent };
   return b;
 }

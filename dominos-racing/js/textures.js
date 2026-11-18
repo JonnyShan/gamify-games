@@ -290,6 +290,9 @@ export function fenceTexture() {
 // centred at (x, y), h px tall, squeezed horizontally by sx; it returns false when no logo is loaded.
 let LOGO = null;
 export function setLogo(img) { LOGO = img; }
+// Photo billboards (BRAND.billboards): 1024x320 images; each fills one hoarding with the logo on its empty side.
+let PHOTOS = [];
+export function setBillboards(imgs) { PHOTOS = imgs.filter(Boolean); }
 export function drawLogo(g, x, y, h, color = BRAND.light, sx = 1) {
   if (!LOGO) return false;
   const w = h * LOGO.width / LOGO.height;
@@ -341,6 +344,17 @@ export function airfenceTexture() {
 export function billboardTexture(variant = 0) {
   const W = 1024, H = 320;
   const [c, g] = canvas(W, H);
+  const photo = variant >= 2 ? PHOTOS[variant - 2] : null;
+  if (photo) {
+    // photo 0 has its empty space on the left, photo 1 on the right
+    g.drawImage(photo, 0, 0, W, H);
+    const left = variant === 2, cx = left ? W * 0.22 : W * 0.78;
+    const lh = LOGO ? Math.min(H * 0.5, W * 0.3 * LOGO.height / LOGO.width) : 0;
+    if (!drawLogo(g, cx, H * 0.4, lh, BRAND.light)) wordmark(g, cx, H * 0.4, 64, BRAND.light, 0.08);
+    g.font = `800 italic 52px ${COND}`; g.fillStyle = BRAND.light; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillText(BRAND.wordmark, cx, H * 0.8);
+    return tex(c, { repeat: false });
+  }
   if (variant === 0) {
     g.fillStyle = BRAND.dark; g.fillRect(0, 0, W, H);
     const lh = LOGO ? Math.min(H * 0.8, W * 0.62 * LOGO.height / LOGO.width) : 0;

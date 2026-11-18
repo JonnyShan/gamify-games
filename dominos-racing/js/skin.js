@@ -27,6 +27,10 @@ for (const f of B.fonts.files) {
   catch (e) { console.warn('font', f.src, e); }
 }
 
+if (B.keyart) {
+  const l = document.getElementById('loader');
+  if (l) l.style.background = `linear-gradient(180deg,rgba(${hex(B.bg).join(',')},.55),rgba(${hex(B.bg).join(',')},.92) 75%),url(${B.keyart}) center/cover no-repeat,var(--bg)`;
+}
 document.title = B.title;
 document.querySelector('meta[name="description"]')?.setAttribute('content', B.description);
 document.querySelector('meta[name="theme-color"]')?.setAttribute('content', B.dark);
