@@ -16,11 +16,11 @@ const CORE = {
 
   // Colours by role. The UI, trackside signage, car livery and HUD all read these.
   primary: '#006491',                 // main fill: airfence, primary buttons, procedural bike (text on it is picked for contrast); graphite
-  primaryHot: '#E31837',              // Gamify electric blue: glows, rev lights, start line, first word of the title
+  primaryHot: '#E31837',              // Domino's red: glows, rev lights, start line, first word of the title
   primaryDeep: '#003A57',             // darker fill for roofs and backgrounds; Black
   light: '#FBF8F3',                   // text and light boards; Ivory
-  accent: '#0B8BD9',                  // highlights, the ghost, trims; Gamify blue
-  accent2: '#E31837',                 // secondary highlight; Gamify orange
+  accent: '#0B8BD9',                  // highlights, the ghost, trims; Domino's bright blue
+  accent2: '#E31837',                 // secondary highlight; Domino's red
   dark: '#0A2233',                    // dark boards, panels; charcoal
   alt: '#E31837',                     // occasional third colour on signage; dark grey
   bg: '#06141F',                      // page background behind the game
@@ -48,7 +48,7 @@ const CORE = {
 
   // Logo for trackside boards, the gantry and the bike's decals: white artwork on transparent, tinted per use. null = text wordmark.
   logo: 'assets/brand/logo.svg',
-  // Logo for the dark menus, HUD and results screen (full-colour Gamify logo, white wordmark). null = text wordmark.
+  // Logo for the dark menus, HUD and results screen (placeholder domino tile + DOMINO'S wordmark). null = text wordmark.
   logoUi: 'assets/brand/logo-ui.svg',
   // Title-screen product shot. null = none.
   product: null,
@@ -79,7 +79,7 @@ const CORE = {
   // The car is built in code, so there is no turning model on the loading screen.
   loaderBike: false,
 
-  // Race announcer (assets/voice/; the two circuit intro lines were re-recorded for Gamify Raceway). false = muted unless ?voice=1.
+  // Race announcer: off for the Domino's mock; ?voice=1 turns the generic lines on (intro lines stay off: they name Gamify Raceway).
   announcer: false,
   introLines: false,
 
@@ -93,7 +93,7 @@ const CORE = {
 };
 
 // ---------------------------------------------------------------------------------------------------------------
-// Brand packs. Gamify (above) is the core; any other brand is a pack in brands/<id>/brand.json laid over it, picked
+// Brand packs. Domino's (above) is the core; any other brand is a pack in brands/<id>/brand.json laid over it, picked
 // with ?brand=<id>. A pack only lists what differs: from its name and accent the rest is derived (titles, signs,
 // share link, save keys, car livery from its accent and optional dark colour), and its logo files live in its folder.
 // The circuit intro lines name Gamify Raceway, so packs skip them.
