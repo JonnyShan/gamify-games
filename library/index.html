@@ -124,6 +124,7 @@ html.embed .shapes,html.embed header.top,html.embed section.hero,html.embed foot
 html.embed,html.embed body{background:transparent}
 @media (min-width:901px){#g-arcade .grid{grid-template-columns:repeat(8,minmax(0,1fr))}#g-arcade .grid>.card{grid-column:span 2}#g-arcade .grid>.card:nth-child(5){grid-column:2 / span 2}}
 html.embed nav.tabs{display:none}
+.card .orient{position:absolute;top:10px;right:12px;z-index:3;font-weight:700;font-size:9px;line-height:1;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);padding:5px 7px 4px;transform:skewX(-8deg)}
 
 html.embed dialog[open]{position:absolute;top:var(--vt,0px);margin:12px auto;max-height:calc(var(--vh,100vh) - 24px);overflow:auto}
 </style>
@@ -202,7 +203,7 @@ const GAMES = [
   {id:'starfighter',fit:.86,genre:'arcade',title:'Starfighter',tag:'Trench run arcade.',kind:'Made for LEGO Star Wars',client:'LEGO Star Wars',cover:P+'lego-starfighter.webp',clip:P+'lego-hover.mp4',text:'An arcade space shooter for a LEGO Star Wars fandom activation.'},
   {id:'uber',fit:.86,genre:'arcade',title:'Backseat Arcade',tag:'Vivid Sydney edition.',kind:'Made for Uber',client:'Uber',cover:P+'backseat-arcade.webp',clip:P+'uber-hover.mp4',text:'Arcade games for Uber riders, played in the back seat during Vivid Sydney.'},
   {id:'jumanji',fit:.86,genre:'arcade',title:'Jumanji Runner',tag:'Scoop. Dodge. Survive.',kind:'Made for Baskin-Robbins',client:'Baskin-Robbins',cover:P+'baskin-jumanji.webp',clip:P+'jumanji-hover.mp4',text:'A kids and family runner for Baskin-Robbins.'},
-  {id:'netzero',fit:.86,genre:'arcade',title:'Net Zero Hero',tag:'Save the planet, one roll at a time.',kind:'Made for Regina',client:'Regina',cover:P+'net-zero-hero.webp',clip:P+'net-zero-hero-play.mp4',text:'A sustainability campaign game for Regina, built with Five by Five.'},
+  {id:'netzero',fit:.86,genre:'arcade',title:'Net Zero Hero',tag:'Save the planet, one roll at a time.',kind:'Made for Regina',client:'Regina',cover:P+'net-zero-hero.webp',clip:P+'net-zero-hero-hover.mp4',promo:P+'net-zero-hero-play.mp4',text:'A sustainability campaign game for Regina, built with Five by Five.'},
   {id:'matchbox',fit:.86,genre:'arcade',title:'Game On',tag:'Collect. Match. Conquer.',kind:'Made for Matchbox',client:'Matchbox',cover:P+'matchbox.webp',clip:P+'matchbox-hover.mp4',text:'A collecting and matching game for Matchbox loyalty.'},
   {id:'sniper',fit:.86,genre:'arcade',title:'Sniper',tag:'Find him. Hold still. Take the shot.',kind:'Gamify original',client:'Gamify',cover:P+'sniper.webp',clip:P+'sniper-hover.mp4',play:'https://steady-hand-nrriz.pages.dev/',text:'A phone-aimed sniper game. Point your phone to scan a private island, zoom in, match the target to the photo and take the shot.'},
   {id:'prisoner',fit:.86,genre:'story',title:'Prisoner',tag:'What moral lines will you cross?',kind:'Made for Sky',client:'Sky',cover:P+'prisoner.webp',clip:P+'prisoner-hover.mp4',text:'A choice-driven story game for the launch of a Sky Original.'},
@@ -223,7 +224,7 @@ function card(g){
   const vid=g.clip?`<video muted loop playsinline preload="none" data-src="${g.clip}"></video>`:'';
   const go=g.clip&&!g.direct&&g.genre!=='sports'?'&#9654;':'&rarr;';
   const inner=`<div class="media"${g.fit?` style="--fit:${g.fit}"`:''}><div class="bg" style="background-image:url('${g.cover}')"></div><img loading="lazy" src="${g.cover}" alt="">${vid}</div>`+
-    (g.wide?`<span class="orient">Landscape</span>`:'')+`<div class="body"><div class="row"><h3>${esc(g.title)}</h3><b aria-hidden="true">${go}</b></div>`+
+    (g.promo?`<span class="orient">&#9654; Promo reel</span>`:'')+`<div class="body"><div class="row"><h3>${esc(g.title)}</h3><b aria-hidden="true">${go}</b></div>`+
     (g.text?`<div class="desc">${esc(g.text)}</div>`:'')+`</div>`;
   return (g.genre==='sports'||g.direct)&&g.play
     ? `<a class="card${g.wide?' wide':''}" href="${g.play}" target="_blank" rel="noopener" data-id="${g.id}">${inner}</a>`
@@ -254,7 +255,7 @@ function wire(){
 function open(id){
   const g=GAMES.find(x=>x.id===id); if(!g) return;
   document.querySelectorAll('.card video').forEach(v=>v.pause());
-  $('#stage').innerHTML=g.soon?`<img src="${g.cover}" alt="" style="height:100%;object-fit:contain">`:g.clip?`<video src="${g.clip}" autoplay muted loop playsinline controls></video>`:
+  $('#stage').innerHTML=g.soon?`<img src="${g.cover}" alt="" style="height:100%;object-fit:contain">`:g.promo?`<video src="${g.promo}" autoplay playsinline controls></video>`:g.clip?`<video src="${g.clip}" autoplay muted loop playsinline controls></video>`:
     `<div class="shots">${g.shots.map((s,i)=>`<figure><img src="${s}" alt=""><figcaption>${i?'In Volt':'In Gamify'}</figcaption></figure>`).join('')}</div>`;
   $('#mTitle').textContent=g.title; $('#mText').textContent=g.text;
   const a=[];
