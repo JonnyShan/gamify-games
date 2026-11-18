@@ -4,7 +4,7 @@ P='/tmp/claude-0/-home-user/66916df2-97e5-5c94-940a-436d2711a82b/scratchpad'
 U='/root/.claude/uploads/66916df2-97e5-5c94-940a-436d2711a82b/'
 J=U+'9b082195-ScreenRecording_11-16-2026_16-04-00_1_small.mp4'
 R=U+'30a650be-ScreenRecording_11-17-2026_16-37-56_1.mov'
-GEN={'racing':'sfx2/racing.mp3','starfighter':'sfx2/starfighter.mp3','uber':'sfx2/uber.mp3','matchbox':'sfx2/matchbox.mp3','prisoner':'sfx2/prisoner.mp3','debate':'sfx2/debate.mp3','jumanji':'sfx2/jumanji.mp3','jaecoo':'sfx2/jaecoo.mp3','motorbike':'audio/motorbike.mp3','intro':'sfx2/intro.mp3','outro':'sfx2/outro.mp3'}
+GEN={'racing':'sfx2/racing.mp3','starfighter':'sfx3/starfighter.wav','uber':'sfx3/uber.mp3','matchbox':'sfx3/matchbox.mp3','prisoner':'sfx2/prisoner.mp3','debate':'sfx3/debate.mp3','jumanji':'sfx2/jumanji.mp3','jaecoo':'sfx2/jaecoo.mp3','motorbike':'audio/motorbike.mp3','intro':'sfx2/intro.mp3','outro':'sfx2/outro.mp3'}
 PARTS={'jackal':[(J,43.6,1.4),(J,45.0,1.8),(J,41.0,1.6)],'rugby':[(R,0.0,5.0)]}
 def run(a): subprocess.run(['ffmpeg','-nostdin','-v','error','-y']+a,check=True)
 def seg(id,src,ss,d,out):
