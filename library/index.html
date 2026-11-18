@@ -132,9 +132,9 @@ html.embed dialog[open]{position:absolute;top:var(--vt,0px);margin:12px auto;max
   document.documentElement.classList.add('embed');
   window.LIB_EMBED=true;
   function post(m){try{parent.postMessage(Object.assign({src:'gamify-library'},m),'*')}catch(_){}}
-  function size(){post({type:'height',h:document.documentElement.scrollHeight})}
+  function size(){var p=document.querySelector('.page');post({type:'height',h:Math.ceil(p?p.getBoundingClientRect().height:document.body.scrollHeight)})}
   addEventListener('load',size);
-  new ResizeObserver(size).observe(document.documentElement);
+  addEventListener('DOMContentLoaded',function(){var p=document.querySelector('.page');if(p)new ResizeObserver(size).observe(p);size();});
   addEventListener('message',function(e){var d=e.data||{};if(d.src!=='gamify-games-host')return;
     if(d.type==='view'){document.documentElement.style.setProperty('--vt',Math.max(0,d.top)+'px');document.documentElement.style.setProperty('--vh',d.vh+'px');}});
   document.addEventListener('click',function(e){var a=e.target.closest('a[href]');if(!a)return;
