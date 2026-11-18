@@ -60,7 +60,8 @@ section.genre .lede{color:var(--muted);margin:0 0 22px;max-width:720px}
 .card:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
 .card .media{position:relative;aspect-ratio:3/4;overflow:hidden;background:#000;transform:skewX(var(--unskew)) scale(1.16)}
 .card .media .bg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(18px) brightness(.55)}
-.card .media img,.card .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(var(--fit,1))}
+.card .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(var(--fit,1))}
+.card .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .card .media video{opacity:0;transition:opacity .25s;background:#000}
 .card .media video.tall{object-fit:cover}
 .card.playing .media video{opacity:1}
@@ -121,11 +122,7 @@ dialog::backdrop{background:rgba(3,4,6,.86)}
 /* embed mode: shown inside gamify.com/games */
 html.embed .shapes,html.embed header.top,html.embed section.hero,html.embed footer{display:none}
 html.embed,html.embed body{background:transparent}
-#g-arcade .grid{grid-template-columns:repeat(12,minmax(0,1fr))}#g-arcade .grid>.card{grid-column:span 3}#g-arcade .grid>.card.wide{grid-column:span 4;align-self:start}
-.card.wide .media{aspect-ratio:16/9}
-.card .orient{position:absolute;top:10px;right:12px;z-index:3;font-weight:700;font-size:9px;line-height:1;font-style:normal;letter-spacing:.12em;text-transform:uppercase;color:#fff;background:var(--accent);padding:5px 7px 4px;transform:skewX(-8deg)}
-@media (max-width:900px){#g-arcade .grid{grid-template-columns:repeat(6,minmax(0,1fr))}#g-arcade .grid>.card{grid-column:span 2}#g-arcade .grid>.card.wide{grid-column:span 3}}
-@media (max-width:640px){#g-arcade .grid{grid-template-columns:repeat(2,minmax(0,1fr))}#g-arcade .grid>.card{grid-column:span 1}#g-arcade .grid>.card.wide{grid-column:span 2}.card .orient{top:8px;right:10px;font-size:8px}}
+@media (min-width:901px){#g-arcade .grid{grid-template-columns:repeat(8,minmax(0,1fr))}#g-arcade .grid>.card{grid-column:span 2}#g-arcade .grid>.card:nth-child(5){grid-column:2 / span 2}}
 html.embed nav.tabs{display:none}
 
 html.embed dialog[open]{position:absolute;top:var(--vt,0px);margin:12px auto;max-height:calc(var(--vh,100vh) - 24px);overflow:auto}
@@ -204,12 +201,12 @@ const GAMES = [
   {id:'jaecoo',fit:.86,genre:'arcade',title:'Kick for 7',tag:'Kick. Score. Win big.',kind:'Made for Jaecoo',client:'Jaecoo',cover:P+'jaecoo-kick-7.webp',clip:P+'jaecoo-hover.mp4',text:'A rugby goal kicking game for a Jaecoo sponsorship activation.'},
   {id:'starfighter',fit:.86,genre:'arcade',title:'Starfighter',tag:'Trench run arcade.',kind:'Made for LEGO Star Wars',client:'LEGO Star Wars',cover:P+'lego-starfighter.webp',clip:P+'lego-hover.mp4',text:'An arcade space shooter for a LEGO Star Wars fandom activation.'},
   {id:'uber',fit:.86,genre:'arcade',title:'Backseat Arcade',tag:'Vivid Sydney edition.',kind:'Made for Uber',client:'Uber',cover:P+'backseat-arcade.webp',clip:P+'uber-hover.mp4',text:'Arcade games for Uber riders, played in the back seat during Vivid Sydney.'},
+  {id:'jumanji',fit:.86,genre:'arcade',title:'Jumanji Runner',tag:'Scoop. Dodge. Survive.',kind:'Made for Baskin-Robbins',client:'Baskin-Robbins',cover:P+'baskin-jumanji.webp',clip:P+'jumanji-hover.mp4',text:'A kids and family runner for Baskin-Robbins.'},
+  {id:'netzero',fit:.86,genre:'arcade',title:'Net Zero Hero',tag:'Save the planet, one roll at a time.',kind:'Made for Regina',client:'Regina',cover:P+'net-zero-hero.webp',clip:P+'net-zero-hero-play.mp4',text:'A sustainability campaign game for Regina, built with Five by Five.'},
+  {id:'matchbox',fit:.86,genre:'arcade',title:'Game On',tag:'Collect. Match. Conquer.',kind:'Made for Matchbox',client:'Matchbox',cover:P+'matchbox.webp',clip:P+'matchbox-hover.mp4',text:'A collecting and matching game for Matchbox loyalty.'},
   {id:'sniper',fit:.86,genre:'arcade',title:'Sniper',tag:'Find him. Hold still. Take the shot.',kind:'Gamify original',client:'Gamify',cover:P+'sniper.webp',clip:P+'sniper-hover.mp4',play:'https://steady-hand-nrriz.pages.dev/',text:'A phone-aimed sniper game. Point your phone to scan a private island, zoom in, match the target to the photo and take the shot.'},
-  {id:'netzero',wide:true,fit:.86,genre:'arcade',title:'Net Zero Hero',tag:'Save the planet, one roll at a time.',kind:'Made for Regina',client:'Regina',cover:P+'net-zero-hero.webp',clip:P+'net-zero-hero-play.mp4',text:'A sustainability campaign game for Regina, built with Five by Five.'},
-  {id:'jumanji',wide:true,fit:.86,genre:'arcade',title:'Jumanji Runner',tag:'Scoop. Dodge. Survive.',kind:'Made for Baskin-Robbins',client:'Baskin-Robbins',cover:P+'baskin-jumanji.webp',clip:P+'jumanji-hover.mp4',text:'A kids and family runner for Baskin-Robbins.'},
   {id:'prisoner',fit:.86,genre:'story',title:'Prisoner',tag:'What moral lines will you cross?',kind:'Made for Sky',client:'Sky',cover:P+'prisoner.webp',clip:P+'prisoner-hover.mp4',text:'A choice-driven story game for the launch of a Sky Original.'},
   {id:'debate',fit:.86,genre:'story',title:'The Great Debate',tag:'Pick the answer. Win the crowd.',kind:'Made for Mac\'s',client:"Mac's",cover:P+'macs-debate.webp',clip:P+'debate-hover.mp4',direct:true,play:'https://greatdebategame.com/',text:'An interactive video debate for Mac\'s. Two characters face off on stage, the player picks each answer and the crowd meter decides the winner.'},
-  {id:'matchbox',wide:true,fit:.86,genre:'arcade',title:'Game On',tag:'Collect. Match. Conquer.',kind:'Made for Matchbox',client:'Matchbox',cover:P+'matchbox.webp',clip:P+'matchbox-hover.mp4',text:'A collecting and matching game for Matchbox loyalty.'},
   {id:'forgotten',fit:.86,genre:'story',title:'Forgotten Island',tag:'Match the memories.',kind:'Memory match',ready:true,cover:P+'forgotten-poster.webp',clip:P+'forgotten-hover.mp4',play:'https://jonnyshan.github.io/forgotten-island-memory-match/',text:'A memory match played over a living video scene. Pair the keepsakes to bring two friends back together.'},
   {id:'heineken',fit:.86,genre:'story',title:'Jigsaw Challenge',tag:'Solve it. Unlock epic.',kind:'Made for Heineken',client:'Heineken',cover:P+'heineken-jigsaw.webp',clip:P+'heineken-hover.mp4',play:'https://jonnyshan.github.io/heineken-puzzle/',text:'A jigsaw against the clock for Heineken\'s music platform, unlocking festival drops and nights out.'},
   // hidden for now: {id:'flipper',fit:.86,genre:'puzzle',title:'Flipper',tag:'Flip it. Match it.',kind:'Memory match',ready:true,cover:P+'cover-flipper.webp',clip:P+'flipper-hover.mp4',play:'https://gizmo.gamify.com/s3/games.developer.gamify.com/games/8392ac5e-90de-48a5-9d7f-8f64a828e9e2/index.html',text:'The classic card flip. Every card face can carry a product, a logo or an offer.'},
