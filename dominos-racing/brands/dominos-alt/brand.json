@@ -1,0 +1,11 @@
+{
+  "name": "Domino's",
+  "accent": "#E31837",
+  "logo": "logo.svg",
+  "logoUi": "logo-ui.svg",
+  "car": {
+    "body": "#E31837",
+    "accent": "#006491",
+    "trim": "#FBF8F3"
+  }
+}
