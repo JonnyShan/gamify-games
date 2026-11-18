@@ -62,6 +62,7 @@ section.genre .lede{color:var(--muted);margin:0 0 22px;max-width:720px}
 .card .media .bg{position:absolute;inset:-20px;background-size:cover;background-position:center;filter:blur(18px) brightness(.55)}
 .card .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;transform:scale(var(--fit,1))}
 .card .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card .media.vz video,.card .media.vz video.tall{object-fit:contain;transform:scale(var(--vz))}
 .card .media video{opacity:0;transition:opacity .25s;background:#000}
 .card .media video.tall{object-fit:cover}
 .card.playing .media video{opacity:1}
@@ -223,7 +224,7 @@ function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','
 function card(g){
   const vid=g.clip?`<video muted loop playsinline preload="none" data-src="${g.clip}"></video>`:'';
   const go=g.clip&&!g.direct&&g.genre!=='sports'?'&#9654;':'&rarr;';
-  const inner=`<div class="media"${g.fit?` style="--fit:${g.fit}"`:''}><div class="bg" style="background-image:url('${g.cover}')"></div><img loading="lazy" src="${g.cover}" alt="">${vid}</div>`+
+  const inner=`<div class="media${g.vz?' vz':''}" style="${g.fit?`--fit:${g.fit};`:''}${g.vz?`--vz:${g.vz};`:''}"><div class="bg" style="background-image:url('${g.cover}')"></div><img loading="lazy" src="${g.cover}" alt="">${vid}</div>`+
     (g.promo?`<span class="orient">&#9654; Promo reel</span>`:'')+`<div class="body"><div class="row"><h3>${esc(g.title)}</h3><b aria-hidden="true">${go}</b></div>`+
     (g.text?`<div class="desc">${esc(g.text)}</div>`:'')+`</div>`;
   return (g.genre==='sports'||g.direct)&&g.play
