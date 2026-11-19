@@ -1,0 +1,7 @@
+{
+  "name": "Livewire",
+  "accent": "#CBFE00",
+  "logo": "livewire-white.webp",
+  "logoUi": "livewire-lime.webp",
+  "car": { "body": "#1A1A1A", "accent": "#CBFE00", "trim": "#F1F1F1" }
+}
