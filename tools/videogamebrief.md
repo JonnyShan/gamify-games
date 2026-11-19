@@ -1,15 +1,17 @@
-# videogamebrief.com
+# videogamebrief.com: Livewire Grand Prix
 
-Neutral host for pitch-deck demos (no Gamify name, logo or links anywhere a client can see).
+`videogamebrief/racing/` is a Livewire-only copy of `racing/` for https://videogamebrief.com/racing/.
+Livewire is the default brand (no query string); nothing Gamify ships (name, logos, Raceway voice lines,
+gamify.com links, analytics, leaderboard). Regenerate with `node tools/make-videogamebrief.mjs` from the repo
+root and commit; the script fails if any shipped file contains "gamify".
 
-- `/` holding page (noindex)
-- `/racing/` Livewire Grand Prix, Livewire branding by default, no query string
+## Hosting
+videogamebrief.com is the `videogamebrief` Cloudflare Worker (code in the Brain vault,
+`03 - Gamify/Game Studio/videogamebrief.com/worker.js`). It proxies each path to the game's real home and keeps
+the address bar on videogamebrief.com. This copy is served by GitHub Pages once merged to main, at
+https://demos.gamify.com/videogamebrief/racing/, and the Worker line is:
 
-`videogamebrief/racing/` is generated from `racing/` by `node tools/make-videogamebrief.mjs` (run from the repo root, then commit).
-The script fails if any shipped file contains "gamify". Leaderboard is off (kept on each device), analytics off.
+    "racing": "https://demos.gamify.com/videogamebrief/racing/",
 
-## Cloudflare Pages settings
-- Repository: this repo; production branch: `videogamebrief`
-- Build command: none; build output directory: `videogamebrief`
-- Custom domain: `videogamebrief.com`
-- `_headers` sends `X-Robots-Tag: noindex, nofollow` on every path; `robots.txt` disallows all.
+The files under `videogamebrief/` other than `racing/` (holding page, robots.txt, _headers) are not used by the
+Worker, which serves its own.
