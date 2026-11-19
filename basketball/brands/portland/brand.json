@@ -1,0 +1,32 @@
+{
+  "name": "Portland",
+  "share": "Blazers Hoops",
+  "accent": "#E03A3E",
+  "onAccent": "#FFFFFF",
+  "logo": "portland-wordmark.svg",
+  "kitWords": [
+    "red",
+    "slate"
+  ],
+  "teams": [
+    {
+      "id": "portland",
+      "name": "Portland",
+      "abbr": "POR",
+      "primary": "#E03A3E",
+      "secondary": "#000000",
+      "jersey": "#E03A3E",
+      "letters": "#FFFFFF"
+    },
+    {
+      "id": "summit",
+      "name": "Summit",
+      "abbr": "SUM",
+      "primary": "#5B6770",
+      "secondary": "#F1F3F6",
+      "jersey": "#3A4046",
+      "letters": "#F1F3F6",
+      "logo": "summit-badge.svg"
+    }
+  ]
+}
