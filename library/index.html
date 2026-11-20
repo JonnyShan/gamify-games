@@ -114,10 +114,10 @@ dialog::backdrop{background:rgba(3,4,6,.86)}
 .clients .logo{flex:0 0 auto;width:156px;height:76px;background:#fff;border:1px solid rgba(31,130,208,.4);transform:skewX(var(--skew));display:grid;place-items:center}
 .clients .logo span{transform:skewX(var(--unskew));display:grid;place-items:center;width:124px;height:52px}
 .clients .logo img{max-width:124px;max-height:48px;width:auto;height:auto;display:block}
-.clients .logo img.mark{height:44px;width:44px}
-.clients .logo img.mark.wide{width:104px;height:104px;max-width:none;max-height:none}
+.clients .logo img.mark{width:auto;height:40px;max-width:110px}
+.clients .logo img.mark.wide{height:auto;width:104px;max-height:48px}
 @keyframes logos{to{transform:translateX(-50%)}}
-@media (max-width:640px){.clients .logo{width:120px;height:62px}.clients .logo span{width:96px;height:42px}.clients .logo img{max-width:96px;max-height:38px}.clients .logo img.mark{width:36px;height:36px}.clients .logo img.mark.wide{width:84px;height:84px}}
+@media (max-width:640px){.clients .logo{width:120px;height:62px}.clients .logo span{width:96px;height:42px}.clients .logo img{max-width:96px;max-height:38px}.clients .logo img.mark{height:32px;max-width:88px}.clients .logo img.mark.wide{width:84px;height:auto;max-height:38px}}
 @media (prefers-reduced-motion: reduce){.marquee{-webkit-mask-image:none;mask-image:none}.marquee .track{animation:none;width:auto;flex-wrap:wrap}.clients .set{flex-wrap:wrap;justify-content:center;padding:0 16px;gap:12px}.clients .set[aria-hidden]{display:none}}
 
 /* embed mode: shown inside gamify.com/games */
@@ -234,7 +234,7 @@ function card(g){
 function render(filter){
   $('#main').innerHTML=GENRES.filter(x=>filter==='all'||x.id===filter).map((x,i,arr)=>{
     const list=GAMES.filter(g=>g.genre===x.id);
-    const band=(i===arr.length-1)?`<div class="band"><div><h2 class="display">See them in your brand</h2><p>Add a logo and two colours and every sports game switches to your brand, live, in about a minute.</p></div><a class="slant" href="../pack-maker/"><span>Open the pack maker</span></a></div>`:'';
+    const band='';
     return `<section class="genre" id="g-${x.id}"><h2 class="display">${x.head||twoTone(x.name)}</h2><div class="grid">${list.map(card).join('')}</div></section>${band}`;
   }).join('');
   wire();
